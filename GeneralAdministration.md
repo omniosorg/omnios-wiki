@@ -4,11 +4,9 @@ General Administration Guide
 Networking
 ----------
 
-[dladm(1M)](http://illumos.org/man/1m/dladm)
-
-[ipadm(1M)](http://illumos.org/man/1m/ipadm)
-
-[route(1M)](http://illumos.org/man/1m/route)
+* [dladm(1M)](http://illumos.org/man/1m/dladm)
+* [ipadm(1M)](http://illumos.org/man/1m/ipadm)
+* [route(1M)](http://illumos.org/man/1m/route)
 
 ### Setting up dynamic (DHCP) networking
 
@@ -645,6 +643,7 @@ by the package author.
 
 ```pkg://omnios/developer/build/gnu-make@3.82,5.11-0.151006:20130506T182730Z```
 
+|                |                                      |
 |----------------|--------------------------------------|
 | Scheme         | pkg                                  |
 | Publisher      | omnios                               |
@@ -654,6 +653,7 @@ by the package author.
 
 The version string has four parts, separated by punctuation:
 
+|            |                  |                                                                                                                 |
 |------------|------------------|-----------------------------------------------------------------------------------------------------------------|
 | Component  | 3.82             | generally this is the upstream version                                                                          |
 | Build      | 5.11             | the OS release, typically always 5.11 for modern illumos                                                        |
