@@ -500,15 +500,15 @@ space used, available space, compression ratio.
 
 ### Common ZFS Commands
 
-| Command | Description      |
-|------------ | -------------|
-| ```zfs list [<dataset>]```                                    | shows information about the specified dataset, or all datasets if no argument is given. The default is to show only filesystems and volumes. Use ```zfs list -t snapshot``` to show snapshots (or '-t all' to show all types) |
-| ```zfs create <dataset>```                                    | Create a filesystem |
-| ```zfs create -V 20G <dataset>```                             | Create a zvol 20 gigabytes in size |
-| ```zfs snapshot <dataset>@<NAME>```                           | Create a snapshot with name <NAME> |
-| ```zfs rollback <dataset>@<snapshot>```                       | Restore a filesystem to the state referenced by <snapshot>. '''Use with caution! ''' There is no confirmation and it happens immediately. This could have negative consequences for running applications |
-| ```zfs destroy [<dataset>[@<snapshot>]]```                    | Delete a dataset. With no arguments it will error out if there are dependent datasets, such as snapshots and/or children. A list of dependent datasets will be printed |
-| ```zfs [get <property> | set <property>=<value>] <dataset>``` | Manipulate dataset properties. View the list of properties with ```zfs get all <filesystem>```' |
+| Command                                                        | Description                                                                                                                                                                                                                   |
+|----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ```zfs list [<dataset>]```                                     | shows information about the specified dataset, or all datasets if no argument is given. The default is to show only filesystems and volumes. Use ```zfs list -t snapshot``` to show snapshots (or '-t all' to show all types) |
+| ```zfs create <dataset>```                                     | Create a filesystem                                                                                                                                                                                                           |
+| ```zfs create -V 20G <dataset>```                              | Create a zvol 20 gigabytes in size                                                                                                                                                                                            |
+| ```zfs snapshot <dataset>@<NAME>```                            | Create a snapshot with name <NAME>                                                                                                                                                                                            |
+| ```zfs rollback <dataset>@<snapshot>```                        | Restore a filesystem to the state referenced by <snapshot>. '''Use with caution!''' There is no confirmation and it happens immediately. This could have negative consequences for running applications                       |
+| ```zfs destroy [<dataset>[@<snapshot>]]```                     | Delete a dataset. With no arguments it will error out if there are dependent datasets, such as snapshots and/or children. A list of dependent datasets will be printed                                                        |
+| ```zfs [get <property> \| set <property>=<value>] <dataset>``` | Manipulate dataset properties. View the list of properties with ```zfs get all <filesystem>```'                                                                                                                               |
 
 ### Mirroring A Root Pool
 
@@ -645,6 +645,7 @@ by the package author.
 
 ```pkg://omnios/developer/build/gnu-make@3.82,5.11-0.151006:20130506T182730Z```
 
+|----------------|--------------------------------------|
 | Scheme         | pkg                                  |
 | Publisher      | omnios                               |
 | Category       | developer/build                      |
@@ -653,6 +654,7 @@ by the package author.
 
 The version string has four parts, separated by punctuation:
 
+|------------|------------------|-----------------------------------------------------------------------------------------------------------------|
 | Component  | 3.82             | generally this is the upstream version                                                                          |
 | Build      | 5.11             | the OS release, typically always 5.11 for modern illumos                                                        |
 | Branch     | 0.151006         | distribution-specific version, which on OmniOS indicates the OmniOS release for which the package was built     |
@@ -713,11 +715,11 @@ Review the **pkg(1)** man page for details.  Here are some common tasks.
 
 #### Configure Publishers
 
-Command        | Description
----------------|------------------
-```pkg publisher```                                                       | List configured publishers
-```pkg set-publisher -g http://pkg.omniti.com/omniti-ms/ ms.omniti.com``` | Add a publisher
-```pkg unset-publisher ms.omniti.com```                                   | Remove a publisher
+| Command                                                                   | Description                |
+|---------------------------------------------------------------------------|----------------------------|
+| ```pkg publisher```                                                       | List configured publishers |
+| ```pkg set-publisher -g http://pkg.omniti.com/omniti-ms/ ms.omniti.com``` | Add a publisher            |
+| ```pkg unset-publisher ms.omniti.com```                                   | Remove a publisher         |
 
 You can change the repo URL for a publisher without removing it and
 re-adding it:
@@ -726,14 +728,14 @@ re-adding it:
 
 #### List
 
-Command        | Description
----------------|------------------
-```pkg list```                                                       | List all installed packages
-```pkg info omniti/runtime/perl```                                   | Show detailed information on package omniti/runtime/perl, if a package is not installed, add option “-r” to query remotely
-```pkg contents omniti/runtime/perl```                               | List the contents of a package
-```pkg contents -t file -o path omniti/runtime/perl```               | List only regular files (i.e. no dir, link, etc.)
-```pkg contents -t file -o path -a path=\*.pm omniti/runtime/perl``` |  List all files with paths matching a pattern
-```pkg contents -t depend -o fmri subversion```                      |  List the dependencies of a given package
+| Command                                                              | Description                                                                                                                |
+|----------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| ```pkg list```                                                       | List all installed packages                                                                                                |
+| ```pkg info omniti/runtime/perl```                                   | Show detailed information on package omniti/runtime/perl, if a package is not installed, add option “-r” to query remotely |
+| ```pkg contents omniti/runtime/perl```                               | List the contents of a package                                                                                             |
+| ```pkg contents -t file -o path omniti/runtime/perl```               | List only regular files (i.e. no dir, link, etc.)                                                                          |
+| ```pkg contents -t file -o path -a path=\*.pm omniti/runtime/perl``` |  List all files with paths matching a pattern                                                                              |
+| ```pkg contents -t depend -o fmri subversion```                      |  List the dependencies of a given package                                                                                  |
 
 See the section below on IPS dependencies for details
 
@@ -767,24 +769,23 @@ e.g. ```pkg search 'git*'```
 
 #### Install/Update/Remove
 
-Command        | Description
----------------|------------------
-```pkg install omniti/runtime/perl```         | Install a package
-```pkg install -nv omniti/runtime/perl```     | Test to see what would be done
-```pkg install omniti/runtime/perl@5.16.1```  | Install a specific version of a package
-```pkg update omniti/runtime/perl@5.16.1```   | Update a package: same as above, substituting “update” for “install”
-```pkg update omniti/runtime/perl@5.14.2```   | You can “downgrade” too, just specify the older version you want
-```pkg update pkg://mypublisher/*```          | Apply only the updates from a single publisher
-```pkg uninstall omniti/runtime/perl```       | Remove a package
+| Command                                       | Description                                                           |
+|-----------------------------------------------|-----------------------------------------------------------------------|
+| ```pkg install omniti/runtime/perl```         | Install a package                                                     |
+| ```pkg install -nv omniti/runtime/perl```     | Test to see what would be done                                        |
+| ```pkg install omniti/runtime/perl@5.16.1```  | Install a specific version of a package                               |
+| ```pkg update omniti/runtime/perl@5.16.1```   | Update a package: same as above, substituting “update” for “install”  |
+| ```pkg update omniti/runtime/perl@5.14.2```   | You can “downgrade” too, just specify the older version you want      |
+| ```pkg update pkg://mypublisher/*```          | Apply only the updates from a single publisher                        |
+| ```pkg uninstall omniti/runtime/perl```       | Remove a package                                                      |
 
 #### Audit
 
-Command        | Description
----------------|------------------
-
-```pkg history``` | View package change history, use “-l” to get verbose info, including package names and versions
-```pkg verify omniti/library/uuid``` | Verify proper package state
-```pkg fix omniti/library/uuid``` | If a problem is found
+| Command                              | Description                                                                                     |
+|--------------------------------------|-------------------------------------------------------------------------------------------------|
+| ```pkg history```                    | View package change history, use “-l” to get verbose info, including package names and versions |
+| ```pkg verify omniti/library/uuid``` | Verify proper package state                                                                     |
+| ```pkg fix omniti/library/uuid```    | If a problem is found                                                                           |
 
 For example, let's “corrupt” a file and fix it:
 
@@ -944,15 +945,15 @@ given weekly release, you will need to follow these steps.
 The following instructions will always apply an update successfully and
 safely:
 
-Step | Command        | Description
------|----------|------------------
-1 | ```zlogin <zonename> shutdown -i5 -g0 -y``` | Shut down each zone
-2 | ```zoneadm -z <zonename> detach```          | Detach each zone
-3 | ```pkg update```                            | Upgrade the global zone
-4 | ```init 6```                                | Reboot the server
-5 | ```zoneadm -z <zonename> attach -u```       | Attach each zone with minimal update. This ensures that the packages necessary for proper operation match the global zone, but it does **not** update all packages within the zone
-6 | ```pkg -R <zonepath>/root update```         | **Optional:** Perform a full package update of the zone's pkg image. You can also do this as a normal 'pkg update' from within the zone
-7 | ```zoneadm -z <zonename> boot```            | Boot each zone
+| Step | Command                                     | Description                                                                                                                                                                        |
+|------|---------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | ```zlogin <zonename> shutdown -i5 -g0 -y``` | Shut down each zone                                                                                                                                                                |
+| 2    | ```zoneadm -z <zonename> detach```          | Detach each zone                                                                                                                                                                   |
+| 3    | ```pkg update```                            | Upgrade the global zone                                                                                                                                                            |
+| 4    | ```init 6```                                | Reboot the server                                                                                                                                                                  |
+| 5    | ```zoneadm -z <zonename> attach -u```       | Attach each zone with minimal update. This ensures that the packages necessary for proper operation match the global zone, but it does **not** update all packages within the zone |
+| 6    | ```pkg -R <zonepath>/root update```         | **Optional:** Perform a full package update of the zone's pkg image. You can also do this as a normal 'pkg update' from within the zone                                            |
+| 7    | ```zoneadm -z <zonename> boot```            | Boot each zone                                                                                                                                                                     |
 
 Starting with [r151014](ReleaseNotes/r151014.md) you have the option
 of using [Linked Image (lipkg) zones](linked_images.md). With linked
