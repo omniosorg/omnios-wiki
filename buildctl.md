@@ -33,7 +33,7 @@ a stable interface, and is subject to change.
 
 ### build
 
-The ```build`` command can take two optional flags:
+The ```build``` command can take two optional flags:
 
 * The -b flag stands for “batch”, and if used, will not prompt the user yes-or-no for ```pkglint``` (see below), for package installation into ```$PKGSRVR``` (see below), or when a build failure occurs.  The default answers when this flag is set are ```see -l``` for pkglint, “yes” for install into ```$PKGSRVR```, and “stop” when a build failure occurs
 * The -l flag causes the bypass of ```pkglint``` checking.  It is recommended for now that this flag be used, as not all packages in omnios-build are ```pkglint```-clean
@@ -47,15 +47,14 @@ exported to the environment prior to invoking .
 
 ### PKGSRVR
 
-The PKGSRVR environment variable takes a URL (either <http://> or
-<file://>). It specifies the destination for the built IPS packages. If
-it is a <file://> URL, buildctl will first run if the directory does not
+The PKGSRVR environment variable takes a URL (either ```<http://>``` or
+```<file://>```). It specifies the destination for the built IPS packages. If
+it is a ```<file://>``` URL, buildctl will first run if the directory does not
 exist.
 
 ### PKGPUBLISHER
 
-For OmniOS, this should always be set to “omnios”. It is the IPS
-publisher string.
+For OmniOS, this should always be set to “omnios”. It is the IPS publisher string.
 
 ### PREBUILT\_ILLUMOS
 
