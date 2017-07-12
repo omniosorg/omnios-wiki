@@ -500,15 +500,15 @@ space used, available space, compression ratio.
 
 ### Common ZFS Commands
 
-Command | Description
------------- | -------------
-```zfs list [<dataset>]``` | shows information about the specified dataset, or all datasets if no argument is given. The default is to show only filesystems and volumes. Use ```zfs list -t snapshot``` to show snapshots (or '-t all' to show all types)
-```zfs create <dataset>``` | Create a filesystem
-```zfs create -V 20G <dataset>``` | Create a zvol 20 gigabytes in size
-```zfs snapshot <dataset>@<NAME>``` | Create a snapshot with name <NAME>
-```zfs rollback <dataset>@<snapshot>```  | Restore a filesystem to the state referenced by <snapshot>. '''Use with caution! ''' There is no confirmation and it happens immediately. This could have negative consequences for running applications
-```zfs destroy [<dataset>[@<snapshot>]]``` | Delete a dataset. With no arguments it will error out if there are dependent datasets, such as snapshots and/or children. A list of dependent datasets will be printed
-```zfs [get <property> | set <property>=<value>] <dataset>``` | Manipulate dataset properties. View the list of properties with ```zfs get all <filesystem>```'
+| Command | Description      |
+|------------ | -------------|
+| ```zfs list [<dataset>]```                                    | shows information about the specified dataset, or all datasets if no argument is given. The default is to show only filesystems and volumes. Use ```zfs list -t snapshot``` to show snapshots (or '-t all' to show all types) |
+| ```zfs create <dataset>```                                    | Create a filesystem |
+| ```zfs create -V 20G <dataset>```                             | Create a zvol 20 gigabytes in size |
+| ```zfs snapshot <dataset>@<NAME>```                           | Create a snapshot with name <NAME> |
+| ```zfs rollback <dataset>@<snapshot>```                       | Restore a filesystem to the state referenced by <snapshot>. '''Use with caution! ''' There is no confirmation and it happens immediately. This could have negative consequences for running applications |
+| ```zfs destroy [<dataset>[@<snapshot>]]```                    | Delete a dataset. With no arguments it will error out if there are dependent datasets, such as snapshots and/or children. A list of dependent datasets will be printed |
+| ```zfs [get <property> | set <property>=<value>] <dataset>``` | Manipulate dataset properties. View the list of properties with ```zfs get all <filesystem>```' |
 
 ### Mirroring A Root Pool
 
@@ -645,22 +645,18 @@ by the package author.
 
 ```pkg://omnios/developer/build/gnu-make@3.82,5.11-0.151006:20130506T182730Z```
 
-               |  
----------------|------------------
-Scheme         | pkg
-Publisher      | omnios
-Category       | developer/build
-Name           | gnu-make
-Version String | 3.82,5.11-0.151006:20130506T182730Z
+| Scheme         | pkg                                  |
+| Publisher      | omnios                               |
+| Category       | developer/build                      |
+| Name           | gnu-make                             |
+| Version String | 3.82,5.11-0.151006:20130506T182730Z  |
 
 The version string has four parts, separated by punctuation:
 
-           |                  |       
------------|------------------|---------------------------------------
-Component  | 3.82             | generally this is the upstream version
-Build      | 5.11             | the OS release, typically always 5.11 for modern illumos
-Branch     | 0.151006         | distribution-specific version, which on OmniOS indicates the OmniOS release for which the package was built
-Timestamp  | 20130506T182730Z | an [ISO 8601](http://www.cl.cam.ac.uk/~mgk25/iso-time.html) timestamp indicating when the package was published
+| Component  | 3.82             | generally this is the upstream version                                                                          |
+| Build      | 5.11             | the OS release, typically always 5.11 for modern illumos                                                        |
+| Branch     | 0.151006         | distribution-specific version, which on OmniOS indicates the OmniOS release for which the package was built     |
+| Timestamp  | 20130506T182730Z | an [ISO 8601](http://www.cl.cam.ac.uk/~mgk25/iso-time.html) timestamp indicating when the package was published |
 
 A package name may be specified by a shorter string, provided it is
 unambiguous, e.g. ```gnu-make``` or ```build/gnu-make``` instead of
