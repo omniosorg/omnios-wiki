@@ -132,5 +132,5 @@ Keeping Up With The Flow
 See the [Maintainers](Maintainers.md) page for how we stay in sync with
 illumos-gate.
 
-See the \[wiki:OmniOS-on-demand\] page for how the bloody repo is built
+See the [OmniOS-on-demand](OmniOS-on-demand.md) page for how the bloody repo is built
 every time illumos-omnios or omnios-build changes.
