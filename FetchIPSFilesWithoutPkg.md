@@ -32,11 +32,31 @@ discussion are the “file” actions. Actions express the content of the
 package and the properties of those contents. Here's the line that
 describes the miniroot.gz file. I've broken up the line for readability.
 
+```
+file f5786d808cee23acfd932ccd7d3251dca3ba376d 
+  chash=290bf1da7e9c62a0f34fb68d0458c29636b61391
+  group=bin
+  mode=0644
+  owner=root
+  path=tftpboot/kayak/miniroot.gz
+  pkg.csize=42696769
+  pkg.size=43353952
+```
+
 The first value after the “file” action declaration is the filename of
 this resource on the pkg server. When a package is published to a
 server, all files are named by the SHA-1 hash of their content:
 
+```
+digest -a sha1 miniroot.gz
+f5786d808cee23acfd932ccd7d3251dca3ba376d
+```
+
 Files are stored in a hashed directory structure in the on-disk repo:
+
+```
+/repo/omnios-bloody/publisher/omnios/file/f5/f5786d808cee23acfd932ccd7d3251dca3ba376d
+```
 
 All files are stored in gzipped form as well, and that's what the
 pkg.csize and pkg.size attributes indicate (compressed vs. actual size).
@@ -51,7 +71,11 @@ handles the translation and knows where to fetch files from disk.
 By locating the file's hash name in the packet payload (the HTTP
 request) I could see that the URI was
 
- is the mapping from our front-end Apache proxy. pkg.depotd doesn't have
+```
+/omnios/bloody/omnios/file/1/f5786d808cee23acfd932ccd7d3251dca3ba376d
+```
+
+```/omnios/bloody``` is the mapping from our front-end Apache proxy. pkg.depotd doesn't have
 any sort of access control, so we put Apache in front of it to limit the
 allowed HTTP methods to HEAD and GET. Otherwise, anyone with network
 access could publish to our repo. The next “omnios” is the publisher
@@ -59,12 +83,25 @@ name, which you can get from the first component of the FMRI (pkg.fmri
 in the first line of the manifest). Then, followed by the file hash that
 we found in the manifest.
 
-Note: &gt; The URL component following file requests is “1”, which is
-the version of the pkg(5) API for file actions that the client is
-requesting. For other types of resources the number may be different,
-but in OmniOS, is either 0 or 1.
+Note: 
+
+> The URL component following file requests is “1”, which is
+> the version of the pkg(5) API for file actions that the client is
+> requesting. For other types of resources the number may be different,
+> but in OmniOS, is either 0 or 1.
 
 Now that we know what to request, we can grab just the file we want:
+
+```
+curl http://pkg.omniti.com/omnios/bloody/omnios/file/1/f5786d808cee23acfd932ccd7d3251dca3ba376d | \
+  gzip -dc > miniroot.gz
+
+digest -a sha1 miniroot.gz 
+f5786d808cee23acfd932ccd7d3251dca3ba376d
+
+digest -a sha1 /tftpboot/kayak/miniroot.gz
+f5786d808cee23acfd932ccd7d3251dca3ba376d
+```
 
 I now have the exact file as was installed by pkg(1). This is useful,
 for example, if you're setting up PXE booting for OmniOS installs on a
