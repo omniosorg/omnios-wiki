@@ -5,7 +5,7 @@ This document specifies the process (but not the implementation
 specifics) that OmniTI uses for creating signed packages, so that
 interested third parties can sign their packages as well. The process is
 straightforward, but requires the administrator to be familiar with how
-SSL and IPS work. The [packaging how-to documents](Packaging\#How-tos.md) will be quite helpful here.
+SSL and IPS work. The [packaging how-to documents](Packaging.md#How-tos) will be quite helpful here.
 
 Prerequisites
 -------------
