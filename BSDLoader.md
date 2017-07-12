@@ -115,7 +115,7 @@ Interacting with Loader
 
 The Loader main screen looks like this:
 
-![Image(Screen Shot 2017-04-19 at 5.42.17PM.png)](Images/Screen Shot 2017-04-19 at 5.42.17 PM.png)
+![Image(Screen Shot 2017-04-19 at 5.42.17PM.png)](Images/Screen\ Shot\ 2017-04-19\ at\ 5.42.17\ PM.png)
 
 Normally a 10-second countdown will display at the bottom, and if
 nothing is done, OmniOS itself will boot. This screen provides all of
@@ -128,7 +128,7 @@ ALL loader screens will boot OmniOS upon the press of RETURN.
 
 The Boot Options screen looks like this:
 
-![Image(Screen Shot 2017-04-19 at 5.49.18PM.png)](Images/Screen Shot 2017-04-19 at 5.49.18 PM.png)
+![Image(Screen Shot 2017-04-19 at 5.49.18PM.png)](Images/Screen\ Shot\ 2017-04-19\ at\ 5.49.18\ PM.png)
 
 It allows the setting of debug-message boots, pre-loading of KMDB, and
 redirecting the console output.
@@ -141,7 +141,7 @@ Unlike GRUB, loader does not have any unusually small memory limits on
 number of selectable boot environments. They are displayed five at a
 time as follows:
 
-![Image(Screen Shot 2017-04-19 at 5.50.56PM.png)](Images/Screen Shot 2017-04-19 at 5.50.56 PM.png)
+![Image(Screen Shot 2017-04-19 at 5.50.56PM.png)](Images/Screen\ Shot\ 2017-04-19\ at\ 5.50.56\ PM.png)
 
 Like GRUB, a selected BE is NOT marked for persistent default. Only
 OmniOS's (1M) command can do that.
