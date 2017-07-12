@@ -4,8 +4,8 @@ Reporting Issues
 Security
 --------
 
-To notify the OmniOS developers of a security-related issue, please
-email omnios-security (at) omniti (dot) com.
+To notify the OmniOSce developers of a security-related issue, please
+email pgp-encrypted to security (at) omniosce (dot) org.
 
 All Other Issues
 ----------------
@@ -14,7 +14,7 @@ If you have a support contract, please follow the appropriate escalation
 path as outlined in your contract.
 
 Other users may report runtime issues to the [discusslist](http://lists.omniti.com/mailman/listinfo/omnios-discuss) or submit
-a pull request on [Github](https://github.com/omniti-labs/omnios-build)
+a pull request on [Github](https://github.com/omniosorg/omnios-build/issues)
 for build issues.
 
 Since OmniOS is based on illumos, the majority of the software delivered
