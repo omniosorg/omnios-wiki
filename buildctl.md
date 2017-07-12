@@ -1,34 +1,42 @@
- - The OmniOS build control script
+The OmniOS build control script
 ==================================
 
 Introduction
 ------------
 
-At its simplest, scans the subdirectories of and runs in each directory.
-Because each subdirectoies' can be arbitrarily messy, sometimes simply
-uttering will not be sufficient for a fire-and-forget built.
+At its simplest, ```buildctl``` scans the subdirectories of ```omnios-build/build/.``` and runs ```./build.sh``` in each directory.
+Because each subdirectories' ``` ./build.sh``` can be arbitrarily messy, sometimes simply
+uttering ```./buildctl -lb build all``` will not be sufficient for a fire-and-forget built.
 
 Syntax
 ------
 
+```
+cd $OMNIOS_BUILD_SRC/build
+
+./buildctl list {grep-pattern}
+./buildctl list-build {grep-pattern}
+./buildctl {-lb} build {list of package names or package name subsets}
+./buildctl {-lb} build {all}
+```  
+
 ### list
 
-The command will print an alphabetized list of packages available, or a
+The ```list``` command will print an alphabetized list of packages available, or a
 list that matches the grep pattern.
 
 ### list-build
 
-The command will print a list of packages as they are built. Currently,
-this is determined by associative array sorting. The build order is not
+The ```list-build``` command will print a list of packages as they are built. Currently,
+this is determined by ```bash``` associative array sorting. The build order is not
 a stable interface, and is subject to change.
 
 ### build
 
-The command can take two optional flags:
+The ```build`` command can take two optional flags:
 
-`* The -b flag stands for `“`batch`”`, and if used, will not prompt the user yes-or-no for `` (see below), for package installation into $PKGSRVR (see below), or when a build failure occurs.  The default answers when this flag is set are `“`see`` ``-l`”` for pkglint, `“`yes`”` for install into $PKGSRVR, and `“`stop`”` when a build failure occurs.`
-
-`* The -l flag causes the bypass of `` checking.  It is recommended for now that this flag be used, as not all packages in omnios-build are ``-clean.`
+* The -b flag stands for “batch”, and if used, will not prompt the user yes-or-no for ```pkglint``` (see below), for package installation into ```$PKGSRVR``` (see below), or when a build failure occurs.  The default answers when this flag is set are ```see -l``` for pkglint, “yes” for install into ```$PKGSRVR```, and “stop” when a build failure occurs
+* The -l flag causes the bypass of ```pkglint``` checking.  It is recommended for now that this flag be used, as not all packages in omnios-build are ```pkglint```-clean
 
 Environment Variables
 ---------------------
@@ -76,19 +84,19 @@ of assuming it's being run as root. A build of the whole world should
 have kayak-kernel be the last thing to build. kayak-kernel pulls its
 bits from either PKGURL (a URL for a source of packages), or PKGSRVR if
 PKGURL is not set. The source of packages for kayak-kernel should be
-fully populated in advance. \[wiki:OmniOS-on-demand OmniOS-on-demand\]
+fully populated in advance. [OmniOS-on-demand](OmniOS-on-demand.md)
 does this explicitly with PKGSRVR, for example.
 
 ### ROOT\_OK
 
-Most scripts should not be run as root, and they will exit immediately
+Most build.sh scripts should not be run as root, and they will exit immediately
 if they are. Setting ROOT\_OK disables the immediate exit if running as
 root.
 
 Files
 -----
 
- also reads data from some files.
+```buildctl``` also reads data from some files.
 
 ### .../lib/config.sh
 
@@ -101,12 +109,12 @@ While rare, some packages depend on other packages already having been
 built and installed in \$PKGSRVR. This is distinct from IPS dependencies
 or machine environment dependencies, as dependencies in this file are
 BUILD-TIME dependencies. The contents of this files are a list of
-one-package-per-line packages. Currently only has this file.
+one-package-per-line packages. Currently only ```kayak/``` has this file.
 
 Miscellany
 ----------
 
-Recent versions of will perform duplicate suppression. If a subdirectory
+Recent versions of ```buildctl``` will perform duplicate suppression. If a subdirectory
 has N packages, that subdirectory's used to be run N times. Duplicate
 suppression will reduce N down to 1, IF AND ONLY IF “all” is the list of
 packages, or the list of packages use full package names.
