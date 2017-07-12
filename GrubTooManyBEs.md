@@ -30,7 +30,7 @@ Method 2 - use a ISO or USB to clean up
 2. Enter the shell
 3. ```mkdir /tmp/mnt```
 4. ```zpool import -R /tmp/mnt <root-pool-name>```
-5. Edit ```/tmp/mnt/<root-pool-name>/boot/grub/menu.lst``` as follows.
+5. Edit ```/tmp/mnt/<root-pool-name>/boot/grub/menu.lst``` as follows
 
 You will see a lot of entries grouped like this:
 
