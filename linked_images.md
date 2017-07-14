@@ -1,7 +1,7 @@
 Linked Image Zones
 ==================
 
-Starting with \[wiki:ReleaseNotes/r151014 r151014\], the ability to have
+Starting with [r151014](ReleaseNotes/r151014.md), the ability to have
 linked-image zones is available. In OmniOS, we chose to make
 linked-images an option, available through the “lipkg” brand zone. The
 only difference between an ipkg zone (the normal zone type for OmniOS)
@@ -26,15 +26,21 @@ zones automatically updated.
 
 ### r151022 and beyond
 
-It has \[wiki:NewLinkedImages its own page\], but in a nutshell, the
+It has [its own page](NewLinkedImages.md), but in a nutshell, the
 linkage in linked-image zones weakens some, unless you are using the
-new-in-\[wiki:ReleaseNotes/r151022 r151022\] “-r” flag for pkg(1).
+new-in-[r151022](ReleaseNotes/r151022.md) “-r” flag for pkg(1).
 
 How do I use linked images with my zones?
 -----------------------------------------
 
 Normal OmniOS zones are “ipkg” branded. To change a zone's brand, you
 must detach it first, and then reattach it.
+
+```
+zoneadm -z <zonename> detach
+zonecfg -z <zonename> set brand=lipkg
+zoneadm -z <zonename> attach -u
+```
 
 Once the brand is changed, <zonename> will have its IPS image linked to
 the global zone's image. When you update the global zone, <zonename>
