@@ -57,14 +57,14 @@ any other structure such as stripes or stripes of mirrors.
 
 Examples:
 
-| Command                            | Description                                                                                                      |
-|------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| BuildRpool c0t0d0                  | Use c0t0d0 only                                                                                                  |
-| BuildRpool c0t0d0 c0t1d0           | Use c0t0d0 and c0t1d0 only (makes a 2-way mirror)                                                                |
-| BuildRpool <161000                 | Use all devices whose size is less than or equal to 161,000 MB                                                   |
-| BuildRpool >80000,<1000000         | Use all devices whose size is greater than or equal to 80,000 MB and less than or equal to 1,000,000 MB (1 TB)   |
-| BuildRpool ~SEAGATE                | Use all devices whose description contains the string SEAGATE                                                    |
-| BuildRpool c0t0d0 ~INTELSSD,<40000 | Use c0t0d0 and all devices whose description contains INTELSSD and whose size is less than or equal to 40,000 MB |
+| Command                                  | Description                                                                                                      |
+|------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| ```BuildRpool c0t0d0```                  | Use c0t0d0 only                                                                                                  |
+| ```BuildRpool c0t0d0 c0t1d0```           | Use c0t0d0 and c0t1d0 only (makes a 2-way mirror)                                                                |
+| ```BuildRpool <161000```                 | Use all devices whose size is less than or equal to 161,000 MB                                                   |
+| ```BuildRpool >80000,<1000000```         | Use all devices whose size is greater than or equal to 80,000 MB and less than or equal to 1,000,000 MB (1 TB)   |
+| ```BuildRpool ~SEAGATE```                | Use all devices whose description contains the string SEAGATE                                                    |
+| ```BuildRpool c0t0d0 ~INTELSSD,<40000``` | Use c0t0d0 and all devices whose description contains INTELSSD and whose size is less than or equal to 40,000 MB |
 
 SetHostname
 ------------
