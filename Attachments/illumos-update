@@ -1,0 +1,30 @@
+#!/usr/bin/bash
+
+echo "HEY -- pay attention in case any of these FUBAR somehow."
+
+# Illumos-gate child.  Must be a local reference copy.
+ILLUMOS_GATE=~/ws/illumos-gate
+# OmniOS child. Must be a local reference copy with an "upstream" branch.
+ILLUMOS_OMNIOS=~/ws/illumos-omnios
+
+pushd $ILLUMOS_GATE
+git pull --all
+popd
+
+pushd $ILLUMOS_OMNIOS
+git pull --all
+git checkout upstream
+git pull $ILLUMOS_GATE
+git checkout master
+
+echo ""
+echo "So far so good... I'm going to give you a chance to ^C out of here before"
+echo "I 'git merge upstream'.  At this point, illumos-omnios's 'upstream'"
+echo "branch is up to date with illumos-gate, but the master branch is checked"
+echo "out."
+echo ""
+echo "Press RETURN to continue."
+read
+
+git merge upstream
+popd

@@ -1,0 +1,53 @@
+#!/usr/bin/bash
+
+echo "HEY -- pay attention in case any of these FUBAR somehow."
+echo "   (Also, make sure you've run 'illumos-update' first.)"
+
+# illumos-joyent child.  Must be a local reference copy.
+ILLUMOS_JOYENT=~/ws/illumos-joyent
+# OmniOS repo, make sure it has the "upstream_joyent" branch.
+LX_PORT=~/ws/illumos-omnios
+# Directory where "lx-port-data" scripts and data are kept.
+PORT_DATA=~/lx-port-data
+
+cd $ILLUMOS_JOYENT
+git pull --all
+
+# NOTE:  Two-deep now...
+pushd $LX_PORT
+git pull --all
+git checkout upstream_joyent
+git pull $ILLUMOS_JOYENT
+git checkout master
+
+
+# NOTE:  This bit depends on the precise text of README.OmniOS...
+COMMIT_LINE=`grep "Last illumos-joyent" README.OmniOS`
+LAST_COMMIT=`echo $COMMIT_LINE | awk '{print $4}'`
+
+echo "At this point, your $LX_PORT repo has updated joyent bits."
+echo "So I'm going to generate new LX port data, starting with:"
+echo $COMMIT_LINE
+echo "     (i.e. commit $LAST_COMMIT)"
+echo "Press RETURN for me to generate..."
+read
+
+ls -1 $PORT_DATA | grep -q commits
+if [[ $? == 0 ]]; then
+	echo "Whoa! There are 'commits' files. Please clean up."
+	echo ""
+	ls $PORT_DATA
+	echo ""
+	exit 1
+fi
+
+# NOTE: popd should get us back to $ILLUMOS_JOYENT
+popd
+git log --reverse --no-merges --format=%H ${LAST_COMMIT}.. > $PORT_DATA/ij-ALL-commits
+# NOTE: Now we're done with $ILLUMOS_JOYENT
+cd $PORT_DATA
+./narrow-ALL.csh
+echo ""
+echo "You should cd to $LX_PORT and run"
+echo "$PORT_DATA/cherry-pick-or-not.sh"
+echo "until it runs out of commits to potentially pick."
