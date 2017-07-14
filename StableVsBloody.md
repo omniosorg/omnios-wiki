@@ -23,5 +23,5 @@ Install media for bloody are updated periodically but not on a set
 schedule.
 
 Users can always obtain the latest-available packages on their systems
-via ****. See the \[wiki:GeneralAdministration\#PackageManagement
-Package Management\] wiki page for more information.
+via `pkg update`. See the [Package Management](GeneralAdministration.md#PackageManagement)
+wiki page for more information.
