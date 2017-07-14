@@ -1,16 +1,16 @@
 Signed Packages
 ===============
 
-With the \[wiki:ReleaseNotes/r151008 r151008 release cycle\], OmniTI
+With the [r151008 release cycle](ReleaseNotes/r151008.md), OmniTI
 started providing cryptographically signed packages in the main release
 repository. Our intention is to provide signed packages for all new
 packages published to any release repo.
 
-With the \[wiki:ReleaseNotes/r151014 r151014 release cycle\] we take the
+With the [r151014 release cycle](ReleaseNotes/r151014.md) we take the
 further step with ISO and Kayak installations that the “omnios”
 publisher will now **require** signed OmniOS packages. If someone
 upgrades from pre-r151014 to r151014, they must follow the
-\[wiki:Upgrade\_to\_r151014 documented upgrade instructions\] to make
+[documented upgrade instructions](Upgrade_to_r151014.md) to make
 **require-signatures** the signature policy for the “omnios” publisher.
 This policy will not affect other publishers' default settings.
 
@@ -19,8 +19,7 @@ Packages in the unstable (bloody) repo will not be signed.
 
 This document describes what this means for the end user.
 
-Installer Changes
------------------
+## Installer Changes
 
 As of r151008, OmniOS release install images came with the OmniTI
 Certificate Authority (CA) set as an approved authority for the omnios
@@ -39,13 +38,12 @@ publishers that you wish to add will not be subject to this restriction
 signatures, not for lack of signatures) unless you choose to make them
 so.
 
-Changing the Defaults
----------------------
+## Changing the Defaults
 
 Both publishers and images (i.e. collections of publishers that supply
 software to an instance of OmniOS) have a property (signature-policy)
 that governs whether and to what extent package signatures should be
-checked. People who \[wiki:Upgrade\_to\_r151014 upgrade to r151014\] are
+checked. People who [upgrade to r151014](Upgrade_to_r151014.md) are
 expected to change the omnios publisher's policy per the documented
 upgrade instructions.
 
@@ -59,11 +57,20 @@ other publishers will be verified *if they exist*, but are not required
 the properties of the omnios publisher and the local image,
 respectively:
 
+```
+$ pkg publisher omnios
+$ pkg property
+```
+
 If you wish to require *all* packages from *all* publishers configured
 in the local image to be signed, set the *image's* signature-policy
 property:
 
-*WARNING* - Do not do this unless you are sure all your publishers,
+```
+# pkg set-property signature-policy require-signatures
+```
+
+**WARNING** - Do not do this unless you are sure all your publishers,
 especially ones in non-global zones who inherit policies from the global
 zone, have signed packages AND you have their root CA certs installed
 properly.
@@ -80,14 +87,18 @@ sub-command.
 Certificates used for signing must be issued by a trusted authority. By
 default, pkg(1) trusts CA certs that have been either:
 
-`* set for the publisher: `\
-`* placed into a dedicated directory for this purpose. For OmniOS, it's /etc/ssl/pkg/.`
+* set for the publisher: ```pkg set-publisher --approve-ca-cert /path/to/ca-cert.pem publishername```
+* placed into a dedicated directory for this purpose. For OmniOS, it's ```/etc/ssl/pkg/```
 
 If you wish to configure pkg(1) to trust different global CAs, you may
 configure the local image with a different trust directory:
 
+```
+# pkg set-property trust-anchor-directory /path/to/cert/dir
+```
+
 You can do this manually post-install, via a action in
-\[wiki:KayakClientOptions\#Postboot Kayak\], or via your local
+[Kayak](KayakClientOptions.md#Postboot), or via your local
 configuration management.
 
 #### SSL Transport
@@ -97,11 +108,37 @@ repositories over HTTPS. This is the “ca-path” image property. By
 default, this is also . You may change this path to point at an
 alternate directory.
 
+```
+# pkg set-property ca-path /path/to/cert/dir
+```
+
 NOTE: SSL transport is not implemented for OmniOS currently by default.
 
-FAQ
----
+## FAQ
 
-`What if I don't care about requiring signed packages?:: You may change the signature-policy property on all publishers and the local image if you wish.  Use the value `“`ignore`”`.  Do so at your own risk, however.`\
-`How do I trust the install media?:: SHA1 and MD5 checksums are published for all ISO, USB and Kayak ZFS images.  You may retrieve them over HTTPS from [wiki:Installation the installation page] in order to verify that they are coming from OmniTI.`\
-`How do I get my existing r151012 install to have the same settings as a new one?:: To convert an existing install to behave like a new install, follow these steps.  This includes removing and re-adding the omnios publisher.  This is because signed manifests have the same timestamp as their unsigned predecessors, and pkg(1) doesn't notice the change.  Removing the publisher clears all local copies of the repository catalog, allowing the new, signed manifests to be seen.`
+### What if I don't care about requiring signed packages?
+
+You may change the signature-policy property on all publishers and the local image if you wish. Use the value “ignore”. Do so at your own risk, however
+
+```
+# pkg set-property signature-policy ignore
+```
+
+### How do I trust the install media?
+
+SHA1 and MD5 checksums are published for all ISO, USB and Kayak ZFS images. You may retrieve them over HTTPS from [the installation page](Installation.md) in order to verify that they are coming from OmniTI.
+
+### How do I get my existing r151012 install to have the same settings as a new one?
+
+To convert an existing install to behave like a new install, follow these steps. This includes removing and re-adding the omnios publisher. This is because signed manifests have the same timestamp as their unsigned predecessors, and pkg(1) doesn't notice the change. Removing the publisher clears all local copies of the repository catalog, allowing the new, signed manifests to be seen.
+
+```
+# pkg update pkg
+# pkg unset-publisher omnios
+# pkg set-publisher -g http://pkg.omniti.com/omnios/release/ omnios
+# pkg update web/ca-bundle
+# openssl sha1 /etc/ssl/pkg/OmniTI_CA.pem
+# # Compare the sha1 against the one listed at <secure URL>
+# pkg set-publisher --approve-ca-cert /etc/ssl/pkg/OmniTI_CA.pem omnios
+# pkg set-publisher --set-property signature-policy=require-signatures omnios
+```
