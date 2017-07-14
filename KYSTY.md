@@ -55,5 +55,5 @@ You might not care enough about the particular build options and just
 want something you can install and use. That's fine. Find someone else
 who has done the work and made their packages available via their own
 publisher. OmniOS encourages a “layer cake” approach to the packaging
-ecosystem. \[wiki:Packaging Add packages from different collections\] to
+ecosystem. [Add packages from different collections](Packaging.md) to
 your system to get the tools you want.
