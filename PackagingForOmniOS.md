@@ -127,3 +127,4 @@ More Information
 * [Introduction to IPS](http://www.slideshare.net/esproul/ips-image-packaging-system) (slide stack, also available in [PDF](http://omnios.omniti.com/media/IPS_Intro.pdf))
 * [pkg(5): Image Packaging System](http://en.wikipedia.org/wiki/Image_Packaging_System)
 * [Packaging and Delivering Software with the Image Packaging ystem: A Developer's Guide](http://omnios.omniti.com/media/ipsdevguide.pdf)
+* [IPS Project at java.net (Wayback Machine)](https://web.archive.org/web/20170317195523/https://java.net/projects/ips)
