@@ -35,7 +35,7 @@ first. Releases in **bold** are currently receiving support.
 
 | Release     | Type   | Release Date                       | Updates Until |
 |-------------|--------|------------------------------------|---------------|
-| r151006     | LTS    | [H1 2013](ReleaseNotes/r151006.md) | H1 2016       | 
+| r151006     | LTS    | [H1 2013](ReleaseNotes/r151006.md) | H1 2016       |
 | r151008     | normal | [H2 2013](ReleaseNotes/r151008.md) | H2 2014       |
 | r151010     | normal | [H1 2014](ReleaseNotes/r151010.md) | H1 2015       |
 | r151012     | normal | [H2 2014](ReleaseNotes/r151012.md) | H2 2015       |
