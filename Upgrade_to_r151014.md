@@ -34,16 +34,22 @@ some setup.
 
 * If you wish to avoid a window of on-rpool log overflow between the old and new boot environments, disable any services that log in appropriate zones (including global)
 * Make sure the global zone can reach the network
-* Create a backup boot environment for safety (being careful of the number of BEs): `beadm create <appropriate-backup-name>`
+* Create a backup boot environment for safety (being careful of the number of BEs):
+  ```
+  # beadm create <appropriate-backup-name>
+  ```
 * Change the publisher (as root or with privilege) in every zone root, including global. For example, going from r151014 to r151016:
   ```
-  /usr/bin/pkg set-publisher -G http://pkg.omniti.com/omnios/r151014/ -g http://pkg.omniti.com/omnios/r151016/ omnios
-  /usr/bin/pkg -R /zones/zone1/root set-publisher -G http://pkg.omniti.com/omnios/r151014/ -g http://pkg.omniti.com/omnios/r151016/ omnios
-  /usr/bin/pkg -R /zones/zone2/root set-publisher -G http://pkg.omniti.com/omnios/r151014/ -g http://pkg.omniti.com/omnios/r151016/ omnios
+  # /usr/bin/pkg set-publisher -G http://pkg.omniti.com/omnios/r151014/ -g http://pkg.omniti.com/omnios/r151016/ omnios
+  # /usr/bin/pkg -R /zones/zone1/root set-publisher -G http://pkg.omniti.com/omnios/r151014/ -g http://pkg.omniti.com/omnios/r151016/ omnios
+  # /usr/bin/pkg -R /zones/zone2/root set-publisher -G http://pkg.omniti.com/omnios/r151014/ -g http://pkg.omniti.com/omnios/r151016/ omnios
   .  .  .
   ```
 * If you have non-OmniOS IPS publishers, some of those packages may not yet be aware of r151016 and block the upgrade (e.g. some ms.omniti.com packages). Uninstall these ones prior to the update.
-* Perform the update, optionally specifying the new BE name: `/usr/bin/pkg update {--be-name new-BE-name}`
+* Perform the update, optionally specifying the new BE name:
+  ```
+  # /usr/bin/pkg update {--be-name new-BE-name}
+  ```
 * Reboot
 
 **NOTE**: Once past a release migration, linked-image zones still offers
