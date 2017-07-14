@@ -1,9 +1,13 @@
 OmniOS Documentation
 ====================
 
-* Latest downloads
-  * Stable: [ISO](http://omnios.omniti.com/media/OmniOS_Text_Stable_latest.iso), [USB](http://omnios.omniti.com/media/OmniOS_Text_Stable_latest.usb-dd), [PXE](http://omnios.omniti.com/media/OmniOS_Kayak_Stable_latest.zfs.bz2)
-  * LTS: [ISO](http://omnios.omniti.com/media/OmniOS_Text_LTS_latest.iso), [USB](http://omnios.omniti.com/media/OmniOS_Text_LTS_latest.usb-dd), [PXE](http://omnios.omniti.com/media/OmniOS_Kayak_LTS_latest.zfs.bz2)
+Latest downloads
+
+* Stable: [ISO](http://omnios.omniti.com/media/OmniOS_Text_Stable_latest.iso), [USB](http://omnios.omniti.com/media/OmniOS_Text_Stable_latest.usb-dd), [PXE](http://omnios.omniti.com/media/OmniOS_Kayak_Stable_latest.zfs.bz2)
+* LTS: [ISO](http://omnios.omniti.com/media/OmniOS_Text_LTS_latest.iso), [USB](http://omnios.omniti.com/media/OmniOS_Text_LTS_latest.usb-dd), [PXE](http://omnios.omniti.com/media/OmniOS_Kayak_LTS_latest.zfs.bz2)
+
+## Wiki
+
 * [Installation](Installation.md) - How to install OmniOS.
 * [Release Notes](ReleaseNotes.md) - Release-specific information.
   * [Release Cycle](ReleaseCycle.md) - Releases and their update schedules
@@ -26,16 +30,14 @@ OmniOS Documentation
   * [Creating Repos](CreatingRepos.md) - Everything Lives in a Repo so here is how to create one.
 * [More Info](MoreInfo.md) - Links to external sources of additional information.
 
-Package Server
---------------
+## Package Server
 
-* [Stable release](http://pkg.omniti.com/omnios/r151022/)
-* [LTS release](http://pkg.omniti.com/omnios/r151022/)
-* [Bloody release](http://pkg.omniti.com/omnios/bloody/)
-* [What's the difference?](StableVsBloody)
+* [Stable release](https://pkg.omniosce.org/r151022/core/)
+* [LTS release](https://pkg.omniosce.org/r151022/core/)
+* [Bloody release](https://pkg.omniosce.org/bloody/core/)
+* [What's the difference?](StableVsBloody.md)
 
-Join the Conversation
----------------------
+## Join the Conversation
 
 * IRC: #omnios and #illumos on Freenode
 * [OmniOS-discuss](http://lists.omniti.com/mailman/listinfo/omnios-discuss) - general discussion mailing list
