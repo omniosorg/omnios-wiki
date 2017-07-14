@@ -1,4 +1,4 @@
-Side-porting LX from 
+Side-porting LX from illumos-joyent
 =====================
 
-See \[wiki:Maintainers\#Cherrypickingfromillumos-joyent here\].
+See [here](Maintainers.md#Cherrypickingfromillumos-joyent).
