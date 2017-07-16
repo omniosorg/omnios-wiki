@@ -70,8 +70,8 @@ boot option when pv-grub is expanding \$ZFS-BOOTFS macro. The value
 stored in the pool's label needs to match disk device name in EC2
 environment. The OS used for preparing the disk image most likely stored
 some pci device names in the label. When booted in EC2 environment,
-first disk will be represented by ```/xpvd/xdf@2048``` device, second by
-```/xpvd/xdf@2064``` and so on.
+first disk will be represented by `/xpvd/xdf@2048` device, second by
+`/xpvd/xdf@2064` and so on.
 
 Someone at Sun was looking for a tool that could be used to change the
 values but such tool has never materialised. See here:

@@ -29,12 +29,12 @@ Then (as root or with sudo):
 The install-usb target is dependent on all of the other media. When you
 are done, you will see:
 
-| file                                            | purpose                                                                                     |
-|-------------------------------------------------|---------------------------------------------------------------------------------------------|
-| ```/rpool/kayak_image/miniroot.gz```            | The PXE boot miniroot that also forms the ISO/USB miniroot                                  |
-| ```/rpool/kayak_image/kayak_$RELEASE.zfs.bz2``` | The compressed ZFS send stream that Kayak installers spray onto a new rpool                 |
-| ```/rpool/kayak_image/$RELEASE.iso```           | The ISO image for the [Kayak Interactive Installer](KayakInteractive.md)                    |
-| ```/rpool/kayak_image/$RELEASE.usb-dd```        | The USB stick image (using dd(1) for the [Kayak Interactive Installer](KayakInteractive.md) |
+| file                                        | purpose                                                                                     |
+|---------------------------------------------|---------------------------------------------------------------------------------------------|
+| `/rpool/kayak_image/miniroot.gz`            | The PXE boot miniroot that also forms the ISO/USB miniroot                                  |
+| `/rpool/kayak_image/kayak_$RELEASE.zfs.bz2` | The compressed ZFS send stream that Kayak installers spray onto a new rpool                 |
+| `/rpool/kayak_image/$RELEASE.iso`           | The ISO image for the [Kayak Interactive Installer](KayakInteractive.md)                    |
+| `/rpool/kayak_image/$RELEASE.usb-dd`        | The USB stick image (using dd(1) for the [Kayak Interactive Installer](KayakInteractive.md) |
 
 ## Publishing Media Files
 

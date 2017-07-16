@@ -87,8 +87,11 @@ sub-command.
 Certificates used for signing must be issued by a trusted authority. By
 default, pkg(1) trusts CA certs that have been either:
 
-* set for the publisher: ```pkg set-publisher --approve-ca-cert /path/to/ca-cert.pem publishername```
-* placed into a dedicated directory for this purpose. For OmniOS, it's ```/etc/ssl/pkg/```
+* set for the publisher: 
+  ```
+  pkg set-publisher --approve-ca-cert /path/to/ca-cert.pem publishername
+  ```
+* placed into a dedicated directory for this purpose. For OmniOS, it's `/etc/ssl/pkg/`
 
 If you wish to configure pkg(1) to trust different global CAs, you may
 configure the local image with a different trust directory:
@@ -118,7 +121,8 @@ NOTE: SSL transport is not implemented for OmniOS currently by default.
 
 ### What if I don't care about requiring signed packages?
 
-You may change the signature-policy property on all publishers and the local image if you wish. Use the value “ignore”. Do so at your own risk, however
+You may change the signature-policy property on all publishers and the local image
+if you wish. Use the value “ignore”. Do so at your own risk, however
 
 ```
 # pkg set-property signature-policy ignore
@@ -126,11 +130,17 @@ You may change the signature-policy property on all publishers and the local ima
 
 ### How do I trust the install media?
 
-SHA1 and MD5 checksums are published for all ISO, USB and Kayak ZFS images. You may retrieve them over HTTPS from [the installation page](Installation.md) in order to verify that they are coming from OmniTI.
+SHA1 and MD5 checksums are published for all ISO, USB and Kayak ZFS images.
+You may retrieve them over HTTPS from [the installation page](Installation.md)
+in order to verify that they are coming from OmniTI.
 
 ### How do I get my existing r151012 install to have the same settings as a new one?
 
-To convert an existing install to behave like a new install, follow these steps. This includes removing and re-adding the omnios publisher. This is because signed manifests have the same timestamp as their unsigned predecessors, and pkg(1) doesn't notice the change. Removing the publisher clears all local copies of the repository catalog, allowing the new, signed manifests to be seen.
+To convert an existing install to behave like a new install, follow these steps.
+This includes removing and re-adding the omnios publisher. This is because signed
+manifests have the same timestamp as their unsigned predecessors, and pkg(1) doesn't
+notice the change. Removing the publisher clears all local copies of the repository
+catalog, allowing the new, signed manifests to be seen.
 
 ```
 # pkg update pkg

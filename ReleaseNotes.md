@@ -20,14 +20,14 @@ The [bloody release](Bloody.md) has unsigned packages, and is in flux FAR MORE t
 The OmniOS release cycle [explained](ReleaseCycle.md).
 
 Unless specifically noted, any interim (“weekly”) release may be applied
-via ```pkg update``` without a reboot. See [the admin page](GeneralAdministration.md#PackageManagement)
+via `pkg update` without a reboot. See [the admin page](GeneralAdministration.md#PackageManagement)
 for details on using pkg(1).
 
 Major releases are really all that matter in terms of general support.
-Use ```pkg info``` on packages mentioned in weekly releases to see if you
+Use `pkg info` on packages mentioned in weekly releases to see if you
 have the updated version.
 
-To determine the major release your system is on, look at ```/etc/release```
+To determine the major release your system is on, look at `/etc/release`
 
 ```
   OmniOS v11 r151014
@@ -35,7 +35,7 @@ To determine the major release your system is on, look at ```/etc/release```
   Use is subject to license terms.
 ```
 
-or starting with \[wiki:ReleaseNotes/r151018 OmniOS r151018\], ```uname -v``` or ```uname -a``` will
+or starting with [OmniOS r151018](ReleaseNotes/r151018.md), `uname -v` or `uname -a` will
 have it as well:
 
 ```

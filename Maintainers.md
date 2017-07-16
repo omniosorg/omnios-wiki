@@ -56,9 +56,9 @@ The steps for cherrypicking LX changes are:
 Attached is a tarball for an **lx-port-data** that covers all of these
 up until the release of [r151022](ReleaseNotes/r151022.md).
 **lx-port-data** also includes scripts to implement steps 2-3, and steps
-4-5 above. Also attached is a script, ```joyent-update```, that uses the (older)
+4-5 above. Also attached is a script, `joyent-update`, that uses the (older)
 lx-port-data scrtips to implement steps 1-3 together, which allows the
-```lx-port-date/cherry-pick-or-not``` script to run once for every commit.
+`lx-port-date/cherry-pick-or-not` script to run once for every commit.
 
 Here's a sample session:
 

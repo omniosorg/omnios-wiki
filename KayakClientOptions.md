@@ -70,7 +70,7 @@ SetHostname
 ------------
 
 Takes a single argument and sets the hostname in the running miniroot
-environment as well as placing it in ```/etc/nodename``` in the installed
+environment as well as placing it in `/etc/nodename` in the installed
 environment.
 
 AutoHostname
@@ -205,7 +205,7 @@ For example:
 UseDNS 4.2.2.1 example.com
 ```
 
-results in a ```resolv.conf``` as follows. Search will use example.com.
+results in a `resolv.conf` as follows. Search will use example.com.
 
 ```
 nameserver 4.2.2.1
@@ -216,7 +216,7 @@ domain example.com
 UseDNS 4.2.2.1 prod.example.com prod.example.com dev.example.com
 ```
 
-results in a ```resolv.conf``` as follows. Search will use prod.example.com
+results in a `resolv.conf` as follows. Search will use prod.example.com
 followed by dev.example.com. In other words, order matters for the
 search path.
 
