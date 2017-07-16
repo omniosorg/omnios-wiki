@@ -51,7 +51,7 @@ nightly to finish before merging the debug and non-debug packages.
 
 Because of the annoyance with a hardwired ZFS dataset, as well as being
 more friendly to illumos developers who often build illumos-omnios
-before building the rest of the system, ```buildctl``` has been
+before building the rest of the system, `buildctl` has been
 enhanced. See the [dedicated buildctl page](buildctl.md) for more.
 
 ## How to roll your own software
