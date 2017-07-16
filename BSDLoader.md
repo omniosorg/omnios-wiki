@@ -2,7 +2,7 @@ illumos Loader (aka. “BSD Loader”)
 ==================================
 
 Starting with r151022, the new illumos boot loader, ported from FreeBSD,
-is the default boot loader. Existing installations that use “” will
+is the default boot loader. Existing installations that use `pkg update` will
 continue to use GRUB for at least one reboot, though.
 
 New OmniOS installations
@@ -16,7 +16,7 @@ should be considered deprecated for new installations.
 Existing OmniOS installations
 -----------------------------
 
-After a “pkg update” to r151022, the next system boot will still be on
+After a `pkg update` to r151022, the next system boot will still be on
 GRUB. This is because [beadm](http://illumos.org/man/1m/beadm) is still
 the pre-r151022 version. After you boot into r151022, the next
 [beadm](http://illumos.org/man/1m/beadm) operation will install loader
@@ -37,7 +37,7 @@ backported to r151022. You can check your disks with the following
 command:
 
 ```
-echo ::sd_state | mdb -k | egrep '(^un|_blocksize)'
+# echo ::sd_state | mdb -k | egrep '(^un|_blocksize)'
 ```
 
 It will return output like the following:
@@ -59,10 +59,10 @@ boot.
 #### Moving to loader
 
 This is the default after updating, but Loader does not get installed
-until you ```beadm activate``` a loader-friendly BE (including the current one). Reboots
-after an update without the invocation of ```beadm activate``` or
+until you `beadm activate` a loader-friendly BE (including the current one). Reboots
+after an update without the invocation of `beadm activate` or
 [installboot](http://illumos.org/man/1m/installboot) will mean your
-machine stays with grub. You should notice an extra message about ```/rpool/boot/menu.lst``` being
+machine stays with grub. You should notice an extra message about `/rpool/boot/menu.lst` being
 created if loader is installed for the very first time on a root pool.
 
 An old BE CAN be booted from the new Loader menu, but beadm will not
@@ -70,9 +70,9 @@ work properly in that pre-Loader boot environment once booted.
 
 ### I WANT TO STAY WITH GRUB AFTER UPDATE
 
-Put ```BE_HAS_GRUB=true``` into ```/etc/default/be``` on your current r151022 boot environment. This will instruct
+Put `BE_HAS_GRUB=true` into `/etc/default/be` on your current r151022 boot environment. This will instruct
 beadm(1M) and libbe that you wish to continue with GRUB. Pre-r151022 BEs
-will work fine, and you can ```beadm activate``` between all of them.
+will work fine, and you can `beadm activate` between all of them.
 
 ### OH NO, I WANT TO CHANGE MY MIND
 
@@ -82,20 +82,20 @@ of the other boot environments is not a post-r151022 with GRUB removed.
 
 #### I WAS USING GRUB, BUT WANT TO SWITCH TO LOADER
 
-* Remove ```/etc/default/be``` on an active r151022 BE
-* ```beadm activate <current-BE>``` -- you should see a message about ```/rpool/boot/menu.lst``` being created
+* Remove `/etc/default/be` on an active r151022 BE
+* `beadm activate <current-BE>` -- you should see a message about `/rpool/boot/menu.lst` being created
 * You are now on loader!
 
-If the ```beadm activate``` fails, or you still are booting with GRUB afterwards, explicitly install loader by:
+If the `beadm activate` fails, or you still are booting with GRUB afterwards, explicitly install loader by:
 
 ```
-rm /etc/default/be
-installboot -m /boot/pmbr /boot/gptzfsboot /dev/rdsk/<rpool-drive>
-rm /rpool/boot/menu.lst
-beadm activate <current-BE>  (should reconstruct /rpool/boot/menu.lst)
+# rm /etc/default/be
+# installboot -m /boot/pmbr /boot/gptzfsboot /dev/rdsk/<rpool-drive>
+# rm /rpool/boot/menu.lst
+# beadm activate <current-BE>  (should reconstruct /rpool/boot/menu.lst)
 ```
 
-If you have mirrored roots, do the above installboot for each ```<rpool-drive>```.
+If you have mirrored roots, do the above installboot for each `<rpool-drive>`.
 
 #### I WAS USING LOADER, BUT WANT TO REVERT TO GRUB
 
@@ -103,12 +103,12 @@ If you have mirrored roots, do the above installboot for each ```<rpool-drive>``
 * Invoke the following:
 
 ```
-rm /rpool/boot/menu.lst
-echo "BE_HAS_GRUB=true" > /etc/default/be
-installgrub -m /boot/grub/stage1 /boot/grub/stage2 /dev/rdsk/<rpool-drive>
+# rm /rpool/boot/menu.lst
+# echo "BE_HAS_GRUB=true" > /etc/default/be
+# installgrub -m /boot/grub/stage1 /boot/grub/stage2 /dev/rdsk/<rpool-drive>
 ```
 
-If you have mirrored roots, use ```installgrub -M /dev/rdsk/<installed-drive> /dev/rdsk/<mirror-drive>```
+If you have mirrored roots, use `installgrub -M /dev/rdsk/<installed-drive> /dev/rdsk/<mirror-drive>`
 
 Interacting with Loader
 -----------------------

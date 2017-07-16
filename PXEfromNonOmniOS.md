@@ -44,7 +44,7 @@ I setup:
 To perform the PXE boot you're going to need the initial kernel
 environment and miniroot.
 
-These are packaged in the ```system/install/kayak-kernel``` package.
+These are packaged in the `system/install/kayak-kernel` package.
 Unfortunately as far as I could see there is no way to download these
 packages using http, you can only get the manifest. I installed an
 OmniOS vm so that I would have access to pkg(5).
@@ -92,15 +92,15 @@ and apply this patch: <http://omnios.omniti.com/changeset.php/core/kayak/436e39c
 
 Now copy the files onto your debian box.
 
-You'll also need some install media. If you look at the menu.list file
-you'll see that the kernel boots with an ```install_media``` and
-```install_config``` option:
+You'll also need some install media. If you look at the `menu.list` file
+you'll see that the kernel boots with an `install_media` and
+`install_config` option:
 
 ```
 install_media=http:///kayak/r151002.zfs.bz2,install_config=http:///kayak
 ```
 
-The install\_config is your kayak config, which I'll cover below. The
+The `install_config` is your kayak config, which I'll cover below. The
 install media is a compressed zfs image, which you can create with the
 kayak tools.
 
@@ -122,7 +122,7 @@ Now build the image:
 This will download the packages and install them into a zfs mount. It
 will then create a compressed snapshot using zfs and bzip.
 
-When it's done you'll have ```/rpool/kayak_bloody.zfs.bz2```, copy this to your debian box.
+When it's done you'll have `/rpool/kayak_bloody.zfs.bz2`, copy this to your debian box.
 
 On the debian box you'll need to install a dhcp server, tftp server, and
 a webserver. I went with:
@@ -146,7 +146,7 @@ root, you install the file copied from the OmniOS box at:
 
 Setup your webserver to serve out the files from /srv/tftp. The
 menu.list expects to get things from <http://IP/kayak> to make sure you
-can access that. Edit the ```menu.list``` and change ```r151002.zfs.bz2``` to be ```kayak_bloody.zfs.bz2```.
+can access that. Edit the `menu.list` and change `r151002.zfs.bz2` to be `kayak_bloody.zfs.bz2`.
 
 You'll need a basic kayak config. The wiki explains the config options:
 [KayakClientOptions](KayakClientOptions.md)
@@ -163,7 +163,7 @@ NO_REBOOT=1
 ```
 
 it should be named after the MAC address of the card, and live in
-```/srv/tftp/kayak```
+`/srv/tftp/kayak`
 
 e.g.
 
@@ -211,7 +211,7 @@ box, and disable the pxe booting. Then start the box back up, and login
 ### Troubleshooting
 
 If the install fails you'll get left in a miniroot environment. There is
-a log in ```/tmp/kayak.log``` which should help figure out what's wrong. The
+a log in `/tmp/kayak.log` which should help figure out what's wrong. The
 miniroot I used had no less, so you'll need to use head to view it. If
 it gets as far as downloading the zfs image, then you'll have more tools
-in ```/mnt``` that you can use.
+in `/mnt` that you can use.

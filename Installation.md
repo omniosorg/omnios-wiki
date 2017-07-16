@@ -19,7 +19,8 @@ Quickstart
 ----------
 
 * [Vagran Boxes](https://atlas.hashicorp.com/omnios)
-* If you're using vagrant <= 1.2.2, this requires the vagrant-guest-omnios plugin (```vagrant plugin install vagrant-guest-omnios```)
+* If you're using vagrant <= 1.2.2, this requires the vagrant-guest-omnios plugin
+  (`vagrant plugin install vagrant-guest-omnios`)
 
 From CD/iso
 -----------
@@ -50,8 +51,8 @@ initially configure the machine as you would for ongoing maintenance.
 By default, the system installs a root user with a blank password and with no networking
 configured. This makes logging in via console supremely simple and logging in remotely
 simply impossible. Once you've logged in the first time, you can set a root password with
-the ```passwd``` command. If you wish, enable remote root login via ssh by editing the
-```/etc/ssh/sshd_config``` file and changing the ```PermitRootLogin``` option to ```yes```; 
+the `passwd` command. If you wish, enable remote root login via ssh by editing the
+`/etc/ssh/sshd_config` file and changing the `PermitRootLogin` option to `yes`; 
 **do so at your own risk**.
 The same risks apply to any post-installation/pre-reboot changes done via the installer shell.
 
@@ -82,8 +83,8 @@ These images may be written to your USB drive with dd, like so:
 dd if=/path/to/image.usb-dd of=/path/to/device bs=1M
 ```
 
-Where ```/path/to/device``` is the base device (e.g., ```/dev/sdc``` in Linux,
-```/dev/disk2``` in MacOS X, and ```dev/rdsk/c0t0d0p0``` in illumos.
+Where `/path/to/device` is the base device (e.g., `/dev/sdc` in Linux,
+`/dev/disk2` in MacOS X, and `dev/rdsk/c0t0d0p0` in illumos.
 It's **very** important that you use rdsk instead of dsk; your USB won't
 boot otherwise!)
 
@@ -105,10 +106,10 @@ Unless otherwise noted, all baseboxes feature:
 
 To use OmniOS Vagrant baseboxes, we strongly recommend that you refer to
 boxes we provide through the Atlas catalogue. Only the baseboxes
-provided under the ```omnios/``` namespace are official. We use a standard
+provided under the `omnios/` namespace are official. We use a standard
 naming scheme for all of our baseboxes, which is simply the release
 number or name. Thus, our current LTS release's basebox is named
-```omnios/r151014``` and the bloody release is ```omnios/bloody```.
+`omnios/r151014` and the bloody release is `omnios/bloody`.
 
 [OmniOS Baseboxes on Atlas](https://atlas.hashicorp.com/omnios)
 
@@ -185,8 +186,8 @@ Install Kayak server and kernel files:
 ```
 
 **(r151014 and earlier)** Activate TFTP server by adding the following line to
-```/etc/inetd.conf``` and running the ```inetconv``` command.  This will create
-an SMF service, ```network/tftp/udp6```.  Note that “udp6” nevertheless serves
+`/etc/inetd.conf` and running the `inetconv` command.  This will create
+an SMF service, `network/tftp/udp6`.  Note that “udp6” nevertheless serves
 BOTH IPv4 and IPv6.
 
 ```
@@ -200,8 +201,8 @@ tftp    dgram   udp6    wait    root    /usr/sbin/in.tftpd      in.tftpd -s /tft
 ```
 
 Activate the Kayak service. This provides an HTTP server which serves files
-from ```/var/kayak/kayak```.  Client installation logs will be uploaded to
-```/var/kayak/logs```. Available installation images, client configs and logs
+from `/var/kayak/kayak`.  Client installation logs will be uploaded to
+`/var/kayak/logs`. Available installation images, client configs and logs
 will be visible from the main index page.
 
 ```
@@ -210,7 +211,7 @@ will be visible from the main index page.
 
 Fetch the ZFS installation image. This is a ZFS root filesystem from a default
 installation. During Kayak installation this is decompressed and received to
-create the local root filesystem. Save the bzip file to ```/var/kayak/kayak```. 
+create the local root filesystem. Save the bzip file to `/var/kayak/kayak`. 
 It should appear under “Available Images” on your server's index page.
 
 [Current stable and LTS](http://omnios.omniti.com/media/r151022.zfs.bz2)
@@ -230,12 +231,12 @@ sha256 (r151023-20170515.zfs.bz2) = a13d325927fe703cd5a4b4c96e23410c2a2c3366df14
 ```
 
 If this is not the same OS version as your kayak host, you may need to
-update ```/tftpboot/boot/grub/menu.lst``` to include your new image.
+update `/tftpboot/boot/grub/menu.lst` to include your new image.
 
 **(OPTIONAL)** Create the installation image if you don't wish to use
 the one provided. This requires a ZFS dataset to act as a container for
-the image. The image will be placed in ```/var/kayak/kayak``` as
-```<release>.zfs.bz2```. Note that because this step manipulates kernel
+the image. The image will be placed in `/var/kayak/kayak` as
+`<release>.zfs.bz2`. Note that because this step manipulates kernel
 drivers as part of building the image, it must be run in the global zone.
 If you want to use a non-global zone as your Kayak server, you can do
 the build step on a global zone and copy the file to the Kayak server.
@@ -257,9 +258,9 @@ TODO: show how to customize the installation image above and beyond the
 Kayak client configs are snippets of bash script that get executed
 during installation.
 
-On your Kayak server, copy ```/usr/share/kayak/sample/000000000000.sample``` to
-a file in ```/var/kayak/kayak``` with a name matching the hex values of the
-client's MAC address in all caps, e.g. ```010203ABCDEF```.
+On your Kayak server, copy `/usr/share/kayak/sample/000000000000.sample` to
+a file in `/var/kayak/kayak` with a name matching the hex values of the
+client's MAC address in all caps, e.g. `010203ABCDEF`.
 
 Edit this file as needed. See the [client documentation](KayakClientOptions.md)
 for details on the possible settings.
@@ -281,7 +282,7 @@ host installz {
 }
 ```
 
-Where ```next-server``` is the IP of your Kayak server.
+Where `next-server` is the IP of your Kayak server.
 
 PXE-boot the client. To avoid an endless loop of installation, do not
 make network the default boot device. Most server firmware allows a
@@ -293,7 +294,7 @@ and will attempt DHCP configuration on all of them in parallel. If your
 system is connected to multiple networks that contain DHCP servers, you
 may get undesirable results.
 
-If the installation succeeds, the client reboots unless ```NO_REBOOT``` is
+If the installation succeeds, the client reboots unless `NO_REBOOT` is
 set in the client config. If installation fails, you can get a shell
 prompt by entering the username “root” and a blank password. Once you
 have finished, either reset the system power or reboot with:

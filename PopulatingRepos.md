@@ -4,7 +4,7 @@ Populating IPS Repos
 So we have set up a fancy IPS repo, but now we need to get packages into
 and out of it. We could either copy all the packages or only some of
 them. In either case, the source and destination URIs may be any
-combination of ```http://``` and ```file://``` URIs.
+combination of `http://` and `file://` URIs.
 
 Wholesale Repo Copy
 -------------------
@@ -13,9 +13,9 @@ Wholesale Repo Copy
 # pkgrecv -s http://pkg.omniti.com/omnios/release -d file:///repo/myomnios/ 'pkg:/*'
 ```
 
-What we have done above is tell ```pkgrecv``` to suck down all the packages
+What we have done above is tell `pkgrecv` to suck down all the packages
 from pkg.omniti.com/omnios/release and push them into a local file-based
-repo. The ```pkg:/``` at the end is just saying get everything.
+repo. The `pkg:/` at the end is just saying get everything.
 
 Cherry-picking
 --------------
@@ -49,7 +49,7 @@ Make a working directory somewhere:
 $ mkdir /home/me/custom
 ```
 
-Pull down a copy of the package to this directory.  Using ```--raw``` gets us the package metadata as well as the content, and treats the destination as a plain directory and not a repository
+Pull down a copy of the package to this directory.  Using `--raw` gets us the package metadata as well as the content, and treats the destination as a plain directory and not a repository
 
 ```
 $ pkgrecv -s file:///repo/myomnios -d /home/me/custom --raw pkg:/system/pciutils/pci.ids
@@ -63,7 +63,7 @@ In your specified directory you'll end up with a subdirectory structure of packa
 ./system%2Fpciutils%2Fpci.ids/2.2.20120906%2C5.11-0.151002%3A20120907T175614Z
 ```
 
-Optionally make metadata changes.  In the version directory there is a file, `“`manifest`”`. Make any necessary changes in this file.
+Optionally make metadata changes.  In the version directory there is a file, `manifest`. Make any necessary changes in this file.
 
 Use pkgsend to publish the package to a repo:
 
@@ -80,7 +80,7 @@ pkg://omnios/system/pciutils/pci.ids@2.2.20120906,5.11-0.151002:20120907T180039Z
 ```
 
 Note that when opening a new repo transaction, the environment variable
-PKG\_TRANS\_ID gets set by capturing the output of the ```pkgsend open```
+PKG\_TRANS\_ID gets set by capturing the output of the `pkgsend open`
 operation, which returns a unique identifier for that transaction.
 PKG\_TRANS\_ID must be set for the subsequent actions to succeed.
 

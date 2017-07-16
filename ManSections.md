@@ -30,5 +30,5 @@ Note:
 
 > In addition to the -s flag for specifying the desired
 > section, you can also append a dot, followed by the section number, to
-> the command being searched. For example, ```man -s 2 intro``` is
-> equivalent to ```man intro.2```
+> the command being searched. For example, `man -s 2 intro` is
+> equivalent to `man intro.2`

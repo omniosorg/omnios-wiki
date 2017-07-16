@@ -42,7 +42,7 @@ followed by a quick exit.
 ## sudoers entries
 
 The user profile for OmniOS-on-demand requires a specific entry in
-```/etc/sudoers``` or ```/etc/sudoers.d```. Basically, the Kayak build script should
+`/etc/sudoers` or `/etc/sudoers.d`. Basically, the Kayak build script should
 be allowed to be run under sudo without user interaction. This allows
 cron(1)-driven OmniOS-on-demand to run smoothly. An example line:
 
@@ -50,5 +50,5 @@ cron(1)-driven OmniOS-on-demand to run smoothly. An example line:
 builder ALL=(ALL) NOPASSWD: <omnios-build path>.../build/kayak/build.sh
 ```
 
-The ```$OMNIOS_BUILD_PATH/tools/``` directory also contains a sample file
-for ```/etc/sudoers.d/```.
+The `$OMNIOS_BUILD_PATH/tools/` directory also contains a sample file
+for `/etc/sudoers.d/`.

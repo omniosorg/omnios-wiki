@@ -75,7 +75,7 @@ request) I could see that the URI was
 /omnios/bloody/omnios/file/1/f5786d808cee23acfd932ccd7d3251dca3ba376d
 ```
 
-```/omnios/bloody``` is the mapping from our front-end Apache proxy. pkg.depotd doesn't have
+`/omnios/bloody` is the mapping from our front-end Apache proxy. pkg.depotd doesn't have
 any sort of access control, so we put Apache in front of it to limit the
 allowed HTTP methods to HEAD and GET. Otherwise, anyone with network
 access could publish to our repo. The next “omnios” is the publisher

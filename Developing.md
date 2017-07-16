@@ -8,13 +8,17 @@ laptops and desktops. OmniOS, while being server-focused, can now also
 be used to develop for illumos, either witha stock illumos-gate, or with
 OmniOS's illumos-omnios.
 
-People used to using /opt/onbld/bin/nightly on platforms may do so on
+People used to using `/opt/onbld/bin/nightly` on platforms may do so on
 OmniOS. An illumos-omnios env file needs a couple of specific settings:
 
-* Disable SMB printing by using ```export ENABLE_SMB_PRINTING='#'```
-* Stock OmniOS installs the illumos-building gcc version in ```/opt/gcc-4.4.4/```, so ```export GCC_ROOT=/opt/gcc-4.4.4```
-* To enable linting, you should set ```ONLY_LINT_DEFS``` per the illumos wiki: ```export ONLY_LINT_DEFS=-I${SPRO_ROOT}/sunstudio12.1/prod/include/lint```
-* If you wish to onu (as opposed to just checking for build sanity), set ```ONNV_BUILDNUM``` to the release of the machine you're ONU-ing. (e.g. If you start with the current LTS release, use ```export ONNV_BUILDNUM=151022```)
+* Disable SMB printing by using `export ENABLE_SMB_PRINTING='#'`
+* Stock OmniOS installs the illumos-building gcc version in `/opt/gcc-4.4.4/`,
+  so `export GCC_ROOT=/opt/gcc-4.4.4`
+* To enable linting, you should set `ONLY_LINT_DEFS` per the illumos wiki:
+  `export ONLY_LINT_DEFS=-I${SPRO_ROOT}/sunstudio12.1/prod/include/lint`
+* If you wish to onu (as opposed to just checking for build sanity), set
+  `ONNV_BUILDNUM` to the release of the machine you're ONU-ing. (e.g. If
+  you start with the current LTS release, use `export ONNV_BUILDNUM=151022`)
 
 The onu script works if you honor the ONNV\_BUILDNUM setting above.
 

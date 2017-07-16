@@ -26,7 +26,7 @@ don't have an installation of that version handy.
 ZFS images
 ----------
 
-These live in ```/var/kayak/kayak``` and the [downloadable images](Installation.md#SetupaKayakserver)
+These live in `/var/kayak/kayak` and the [downloadable images](Installation.md#SetupaKayakserver)
 already have non-conflicting names, so just fetch
 the ones you want to serve. Optionally, make a generic symlink to the
 release image you want to serve, so that you don't have to keep editing
@@ -43,7 +43,7 @@ lrwxrwxrwx 1   16 Aug  6 16:40 r151010.zfs.bz2 -> r151010j.zfs.bz2
 Boot Kernel
 -----------
 
-The package puts the boot kernel in ```/tftpboot/boot/platform/i86pc/kernel/amd64/```
+The package puts the boot kernel in `/tftpboot/boot/platform/i86pc/kernel/amd64/`
 but we need a release-specific path
 so that our multiple copies don't conflict. This is just an example--
 any non-conflicting path and/or filename combination will work.
@@ -70,7 +70,7 @@ Miniroot
 --------
 
 Just like the boot kernel, the miniroots must match their release and be
-in non-conflicting paths. By default, the native one is ```/tftpboot/kayak/miniroot.gz```.
+in non-conflicting paths. By default, the native one is `/tftpboot/kayak/miniroot.gz`.
 
 ```
 cd /tftpboot/kayak
@@ -90,7 +90,7 @@ GRUB Config
 -----------
 
 Tying it all together, we make GRUB menu entries for each release. Edit
-```/tftpboot/boot/grub/menu.lst``` so that it looks something like:
+`/tftpboot/boot/grub/menu.lst` so that it looks something like:
 
 ```
 default=0

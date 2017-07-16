@@ -3,9 +3,9 @@ Kayak Client Configuration
 
 A Kayak client's configuration file is a snippet of bash script that
 gets executed during the installation process. When installation begins,
-the client config is fetched from the Kayak server to ```/tmp/_install_config```.
+the client config is fetched from the Kayak server to `/tmp/_install_config`.
 
-A sample client config is in ```/usr/share/kayak/sample/000000000000.sample``` and looks like this:
+A sample client config is in `/usr/share/kayak/sample/000000000000.sample` and looks like this:
 
 ```
 # See http://omnios.omniti.com/wiki.php/KayakClientOptions
@@ -27,7 +27,7 @@ Postboot '/sbin/ipadm create-addr -T dhcp e1000g0/v4'
 # NO_REBOOT=1
 ```
 
-Strictly speaking, the only mandatory component is ```BuildRpool``` but
+Strictly speaking, the only mandatory component is `BuildRpool` but
 you will probably want to set things like the hostname, timezone and DNS
 and set up networking. See below for additional Postboot examples.
 
@@ -57,14 +57,14 @@ any other structure such as stripes or stripes of mirrors.
 
 Examples:
 
-| Command                                  | Description                                                                                                      |
-|------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| ```BuildRpool c0t0d0```                  | Use c0t0d0 only                                                                                                  |
-| ```BuildRpool c0t0d0 c0t1d0```           | Use c0t0d0 and c0t1d0 only (makes a 2-way mirror)                                                                |
-| ```BuildRpool <161000```                 | Use all devices whose size is less than or equal to 161,000 MB                                                   |
-| ```BuildRpool >80000,<1000000```         | Use all devices whose size is greater than or equal to 80,000 MB and less than or equal to 1,000,000 MB (1 TB)   |
-| ```BuildRpool ~SEAGATE```                | Use all devices whose description contains the string SEAGATE                                                    |
-| ```BuildRpool c0t0d0 ~INTELSSD,<40000``` | Use c0t0d0 and all devices whose description contains INTELSSD and whose size is less than or equal to 40,000 MB |
+| Command                              | Description                                                                                                      |
+|--------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| `BuildRpool c0t0d0`                  | Use c0t0d0 only                                                                                                  |
+| `BuildRpool c0t0d0 c0t1d0`           | Use c0t0d0 and c0t1d0 only (makes a 2-way mirror)                                                                |
+| `BuildRpool <161000`                 | Use all devices whose size is less than or equal to 161,000 MB                                                   |
+| `BuildRpool >80000,<1000000`         | Use all devices whose size is greater than or equal to 80,000 MB and less than or equal to 1,000,000 MB (1 TB)   |
+| `BuildRpool ~SEAGATE`                | Use all devices whose description contains the string SEAGATE                                                    |
+| `BuildRpool c0t0d0 ~INTELSSD,<40000` | Use c0t0d0 and all devices whose description contains INTELSSD and whose size is less than or equal to 40,000 MB |
 
 SetHostname
 ------------
@@ -84,14 +84,14 @@ interface.
 
 For example a nic with the following MAC address **03:E7:A4:B6:7B:2A**:
 
-```AutoHostname``` results in a hostname of ```03-e7-a4-b6-7b-2a-omnios```.
+`AutoHostname` results in a hostname of `03-e7-a4-b6-7b-2a-omnios`.
 
-```AutoHostname kayak``` results in a hostname of ```03-e7-a4-b6-7b-2a-kayak```.
+`AutoHostname kayak` results in a hostname of `03-e7-a4-b6-7b-2a-kayak`.
 
 SetTimezone
 ------------
 
-Updates the value of TZ in ```/etc/default/init``` in the installed
+Updates the value of TZ in `/etc/default/init` in the installed
 environment. The value should be the name of a timezone information
 file in .
 
@@ -110,12 +110,16 @@ Use **SetDNS** to specify one or more name servers.
 
 For example:
 
-```EnableDNS```
+```
+EnableDNS
+```
 
 results only in nsswitch.conf being updated, leaving resolv.conf
 untouched.
 
-```EnableDNS example.com```
+```
+EnableDNS example.com
+```
 
 results in a resolv.conf as follows. Search will use example.com.
 
@@ -141,16 +145,16 @@ See [resolv.conf(4)](http://illumos.org/man/4/resolv.conf) for details.
 
 Additionally, when EnableDNS is specified,
 [/etc/nsswitch.conf](http://illumos.org/man/4/nsswitch.conf) is updated
-with “dns” appended to the ```hosts:``` and ```ipnodes:``` line, after files.
+with “dns” appended to the `hosts:` and `ipnodes:` line, after files.
 
 SetDNS
 ------
 
 Specify one or more servers to use for name resolution.
 
-**note:** Call ```EnableDNS``` first if you want to specify a default or
-search domain. ```SetDNS``` implicitly calls ```EnableDNS``` without
-arguments if no ```resolv.conf``` already exists.
+**note:** Call `EnableDNS` first if you want to specify a default or
+search domain. ``SetDNS` implicitly calls `EnableDNS` without
+arguments if no `resolv.conf` already exists.
 
 For example:
 

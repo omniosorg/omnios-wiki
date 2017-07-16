@@ -26,9 +26,9 @@ And then the installer displays its main menu:
 
 ![Installer main menu](Images/installer_main_menu.png)
 
-The first two items are for installing on to a new root pool ```rpool``` . The first
+The first two items are for installing on to a new root pool `rpool` . The first
 one goes through disk-selection (see below) followed by an installation,
-the second assumes ```rpool``` was constructed already, and proceeds straight to it.
+the second assumes `rpool` was constructed already, and proceeds straight to it.
 For cases where the rpool is comprised of mirrored slices (for example,
 to split an SSD pair between slog and rpool), the second entry should be
 selected.
@@ -55,9 +55,9 @@ Installation
 ------------
 
 After rpool creation, the installer will prompt for a few more
-questions, including time-zone selection. Then it will ```zfs receive```an on-media ZFS
-send stream to create ```rpool/ROOT/omnios```, the first Boot Environment (BE) on this ```rpool```. It
-will also create swap and dump datasets on ```rpool```.
+questions, including time-zone selection. Then it will `zfs receive` an on-media ZFS
+send stream to create `rpool/ROOT/omnios`, the first Boot Environment (BE) on this `rpool`. It
+will also create swap and dump datasets on `rpool`.
 
 Post-install
 ------------

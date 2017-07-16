@@ -95,7 +95,7 @@ kernel = "/root/pv-grub.gz.d3950d8"
 extra = "(hd1)/boot/grub/menu.lst"
 ```
 
-Attach to the domU console: ```xm console <domain-id>```
+Attach to the domU console: `xm console <domain-id>`
 
 When the GRUB menu appears, hit 'e' to edit the default entry, then 'O'
 to add a new line above the first, and add “root (hd1)” on that line.

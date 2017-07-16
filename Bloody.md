@@ -14,7 +14,7 @@ must be cautious. Unless you install bloody from an ISO, USB, or Kayak,
 you will need to reduce the “omnios” publisher's signature policy. To do
 this is similar to the [r151014 upgrade instructions](Upgrade_to_r151014.md):
 
-After shutting down the zones gracefully (```zlogin; shutdown -i5 -g0 -y```):
+After shutting down the zones gracefully (`zlogin; shutdown -i5 -g0 -y`):
 
 It would also be a good idea to take a ZFS snapshot of the zone root in
 case it's needed for rollback (such as if there are issues with the zone

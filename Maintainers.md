@@ -30,7 +30,7 @@ intervention. These will happen either because of OmniOS-specific
 changes, or because of the importation of LX Zones (and accompanying
 infrastructure).
 
-The attached ```illumos-update``` script (see below) automates this, modulo the manual
+The attached `illumos-update` script (see below) automates this, modulo the manual
 merging if step 5 requires it.
 
 ### Cherrypicking from 
@@ -179,8 +179,8 @@ bloody(~/lx-port-data)[0]%
 ### Post-merge building.
 
 After a merge is complete, either execute the build (but do not publish)
-using the tools in omnios-build repo, or use the ```/opt/onbld/bin/nightly``` script per
-[Developing](Developing.md). If you use the ```illumos/build.sh``` script from omnios-build, and the
+using the tools in omnios-build repo, or use the `/opt/onbld/bin/nightly` script per
+[Developing](Developing.md). If you use the `illumos/build.sh` script from omnios-build, and the
 build executes successfully, you will see a prompt similar to:
 
 ```
@@ -208,7 +208,7 @@ Packages destined for release must first be published to the
 release-candidate repo (http://omnios.int.omniti.net:10002/) and
 [cherry-picked](PopulatingRepos.md#Cherry-picking) into the release
 repo. Since the rc repo lives on the same machine as release, this can
-be done quickly with ```file://``` URLs.
+be done quickly with `file://` URLs.
 
 Attachments
 ------------------

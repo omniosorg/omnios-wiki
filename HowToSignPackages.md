@@ -18,7 +18,11 @@ Method
 
 1. Create a repo and publish some packages to it
 2. Create an SSL CA and obtain its certificate and key. Alternately, use an existing one
-3. Obtain the list of packages, in FMRI form, to sign (one way to do this is, e.g., ```pkg info -r -g $REPO_URL 'pkg:/*@*-0.151008' | grep FMRI | awk '{ print $2 }' > ~/fmris_to_sign_151008```, which will write all the FMRIs to sign for the 151008 release to the file ```fmris_to_sign_151008```
+3. Obtain the list of packages, in FMRI form, to sign (one way to do this is, e.g.,
+  ```
+  pkg info -r -g $REPO_URL 'pkg:/*@*-0.151008' | grep FMRI | awk '{ print $2 }' > ~/fmris_to_sign_151008
+  ```
+  which will write all the FMRIs to sign for the 151008 release to the file `fmris_to_sign_151008`
 4. Sign the packages with something like
 
 ```

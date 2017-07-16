@@ -7,7 +7,7 @@ downstream [illumos-omnios](https://github.com/omniosorg/illumos-omnios) is more
 1. Have a machine or VM with a minimum of 8GB of RAM, and 10GB of free disk space
 2. [Install](Installation.md) r151022 or later of OmniOS, boot it, and
    [configure it](GeneralAdministration.md) per instruction on this wiki
-3. Install the single metapackage ```illumos-tools```. ```illumos-tools```
+3. Install the single metapackage `illumos-tools`. `illumos-tools`
    contains compilers, closed binaries, and other tools required to build
    illumos-gate. With privilege or as root:
 
@@ -29,7 +29,12 @@ Creating fast lookup database                   Done
 omnios#
 ```
 
-4. Clone the repo of your choice using git, and perform any modifications. **NOTE: For OmniOS, if you want to use the precise source of a given release, check out that branch (e.g. branch r151016 for r151016). The master branch of OmniOS corresponds roughly to bloody (master may be ahead a few commits of available bloody releases)**
+4. Clone the repo of your choice using git, and perform any modifications.
+
+**NOTE: For OmniOS, if you want to use the precise source of a given release,
+check out that branch (e.g. branch r151016 for r151016). The master branch of
+OmniOS corresponds roughly to bloody (master may be ahead a few commits of
+available bloody releases)**
 
 ```
 omnios#	exit
@@ -64,11 +69,11 @@ omnios(~/build/illumos-omnios)[0]%
 
 5. You may wish to use techniques [here](https://kebesays.blogspot.com/2011/03/for-illumos-newbies-on-developing-small.html)
    to verify your changes prior to building the entire illumos repo
-6. Copy ```/opt/onbld/env/omnios-illumos-gate``` or ```.../omnios-illumos-omnios``` 
+6. Copy `/opt/onbld/env/omnios-illumos-gate` or `.../omnios-illumos-omnios`
    depending on which illumos repo you're building, and modify the GATE and CODEMGR_WS
    variables to match your repo. You can also modify the NIGHTLY_OPTIONS to reduce or
    increase the amount that is built. The default is to build DEBUG & packages, plus
-   lint. Call it ```$HOME/build/my.env``` for this example
+   lint. Call it `$HOME/build/my.env` for this example
 
 ```
 omnios(~/build/illumos-omnios)[0]% cd ..
@@ -122,7 +127,7 @@ sys     24:57.9
 omnios(~/build)[0]% 
 ```
 
-8. A mail should arrive to ```$LOGNAME@localhost```.  You can also check mail_msg or nightly.log in ```$CODEMGR_WS/log/log-`<date>`/```
+8. A mail should arrive to `$LOGNAME@localhost`.  You can also check mail_msg or nightly.log in `$CODEMGR_WS/log/log-\`<date>\`/`
 
 ```
 omnios(~/build)[0]% cat illumos-omnios/log/log.2015-10-29.11:34/mail_msg 

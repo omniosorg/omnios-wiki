@@ -103,14 +103,14 @@ On OmniOS, is [under automounter
 control](http://www.c0t0d0s0.org/archives/4120-Less-known-Solaris-Features-exporthome-home-autofs.html),
 so the directory is not writable.
 
-The minimum configuration required for automounted ```/home``` to work is to
-append the following line to ```/etc/auto_home```: 
+The minimum configuration required for automounted `/home` to work is to
+append the following line to `/etc/auto_home`: 
 
 ```
 *       localhost:/export/home/&
 ```
 
-and reload the autofs service: ```svcadm refresh autofs```
+and reload the autofs service: `svcadm refresh autofs`
 
 A short-and-sweet useradd(1M) invocation on a fresh OmniOS installation
 (which has /export/home as a ZFS dataset) would be: 
@@ -119,8 +119,8 @@ A short-and-sweet useradd(1M) invocation on a fresh OmniOS installation
 # useradd -b /export/home username
 ```
    
-which would add a user with ```HOME=/export/home/username```. A reload of autofs
-after that would have the user's home directory in ```/export/home``` AND ```/home```.
+which would add a user with `HOME=/export/home/username`. A reload of autofs
+after that would have the user's home directory in `/export/home` AND `/home`.
 
 More sophisticated configurations are possible. For example, OmniTI's
 [auto\_home.sh](http://labs.omniti.com/labs/tools/browser/trunk/auto_home.sh?format=txt)
@@ -190,19 +190,19 @@ or a substring that is unique, e.g.,
 [smf\_template(5)](http://illumos.org/man/5/smf_template)
 
 Services are defined in an XML document called a *manifest* and loaded
-into the system using ```svccfg```. This is usually a one-time process,
+into the system using `svccfg`. This is usually a one-time process,
 unless a change to the start/stop method or some other parameter
 requires an update. You can view an existing service's manifest with
-```svccfg export <FMRI>```, which writes to stdout. There are also
+`svccfg export <FMRI>`, which writes to stdout. There are also
 examples of [additional community-created
 manifests](http://www.scalingbits.com/solaris/smf/directory).
 
 If you are making a manifest from scratch for a service, there is an
 easy to use tool called [manifold](http://code.google.com/p/manifold/)
 that will ask you some simple questions and create a manifest. If you
-have python installed, it's simply a case of running ```sudo
-easy\_install Manifold``` to install the tool, and then ```manifold
-<filename.xml>``` to create the manifest.
+have python installed, it's simply a case of running `sudo
+easy\_install Manifold` to install the tool, and then `manifold
+<filename.xml>` to create the manifest.
 
 Additionally, Joyent's Max Bruning reviews the basics: [Documentation
 for SMF](http://joyent.com/blog/documentation-for-smf)
@@ -381,8 +381,8 @@ When a service fails repeatedly to start, SMF places the service in
 “maintenance mode”. This means SMF has given up trying to restart the
 service and is waiting for administrator intervention. Check the
 service's log file for clues. When you've addressed the problem, run
-```svcadm clear <FMRI>```. To see a list of all services that are not in
-their desired state, run ```svcs -vx```
+`svcadm clear <FMRI>`. To see a list of all services that are not in
+their desired state, run `svcs -vx`
 
 ```
 $ svcs -vx
@@ -498,15 +498,15 @@ space used, available space, compression ratio.
 
 ### Common ZFS Commands
 
-| Command                                                        | Description                                                                                                                                                                                                                   |
-|----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ```zfs list [<dataset>]```                                     | shows information about the specified dataset, or all datasets if no argument is given. The default is to show only filesystems and volumes. Use ```zfs list -t snapshot``` to show snapshots (or '-t all' to show all types) |
-| ```zfs create <dataset>```                                     | Create a filesystem                                                                                                                                                                                                           |
-| ```zfs create -V 20G <dataset>```                              | Create a zvol 20 gigabytes in size                                                                                                                                                                                            |
-| ```zfs snapshot <dataset>@<NAME>```                            | Create a snapshot with name <NAME>                                                                                                                                                                                            |
-| ```zfs rollback <dataset>@<snapshot>```                        | Restore a filesystem to the state referenced by <snapshot>. '''Use with caution!''' There is no confirmation and it happens immediately. This could have negative consequences for running applications                       |
-| ```zfs destroy [<dataset>[@<snapshot>]]```                     | Delete a dataset. With no arguments it will error out if there are dependent datasets, such as snapshots and/or children. A list of dependent datasets will be printed                                                        |
-| ```zfs [get <property> \| set <property>=<value>] <dataset>``` | Manipulate dataset properties. View the list of properties with ```zfs get all <filesystem>```'                                                                                                                               |
+| Command                                                    | Description                                                                                                                                                                                                                   |
+|------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `zfs list [<dataset>]`                                     | shows information about the specified dataset, or all datasets if no argument is given. The default is to show only filesystems and volumes. Use ```zfs list -t snapshot``` to show snapshots (or '-t all' to show all types) |
+| `zfs create <dataset>`                                     | Create a filesystem                                                                                                                                                                                                           |
+| `zfs create -V 20G <dataset>`                              | Create a zvol 20 gigabytes in size                                                                                                                                                                                            |
+| `zfs snapshot <dataset>@<NAME>`                            | Create a snapshot with name <NAME>                                                                                                                                                                                            |
+| `zfs rollback <dataset>@<snapshot>`                        | Restore a filesystem to the state referenced by <snapshot>. '''Use with caution!''' There is no confirmation and it happens immediately. This could have negative consequences for running applications                       |
+| `zfs destroy [<dataset>[@<snapshot>]]`                     | Delete a dataset. With no arguments it will error out if there are dependent datasets, such as snapshots and/or children. A list of dependent datasets will be printed                                                        |
+| `zfs [get <property> \| set <property>=<value>] <dataset>` | Manipulate dataset properties. View the list of properties with ```zfs get all <filesystem>```'                                                                                                                               |
 
 ### Mirroring A Root Pool
 
@@ -524,11 +524,27 @@ the new device is “c0t1d0” (use
 [format(1M)](http://illumos.org/man/1m/format) to see what devices are
 available.) The following commands all require root privilege.
 
-* Create a Solaris fdisk partition on 100% of the new disk. Here, “p0” refers to the entire disk starting after the MBR: ```# fdisk -B c0t1d0p0```
-* Copy the disklabel from the existing device to the new one: ```# prtvtoc /dev/rdsk/c0t0d0s2 | fmthard -s - /dev/rdsk/c0t1d0s2```
-* Attach the new device to the pool: ```# zpool attach -f rpool c0t0d0s0 c0t1d0s0```
-* This will trigger a resilver operation, copying the ZFS data from the first device to the second, creating a mirror in the process. View the progress with ```zpool status rpool```
-* Once the resilver is complete, make the new disk bootable: ```# installgrub /boot/grub/stage1 /boot/grub/stage2 /dev/rdsk/c0t1d0s0```
+* Create a Solaris fdisk partition on 100% of the new disk. Here, “p0” refers to the entire disk starting after the MBR:
+  ```
+  # fdisk -B c0t1d0p0
+  ```
+* Copy the disklabel from the existing device to the new one:
+  ```
+  # prtvtoc /dev/rdsk/c0t0d0s2 | fmthard -s - /dev/rdsk/c0t1d0s2
+  ```
+* Attach the new device to the pool:
+  ```
+  # zpool attach -f rpool c0t0d0s0 c0t1d0s0
+  ```
+* This will trigger a resilver operation, copying the ZFS data from the
+  first device to the second, creating a mirror in the process. View the progress with
+  ```
+  zpool status rpool
+  ```
+* Once the resilver is complete, make the new disk bootable:
+  ```
+  # installgrub /boot/grub/stage1 /boot/grub/stage2 /dev/rdsk/c0t1d0s0
+  ```
 
 The next time you reboot the system, make sure to add the new disk as an
 additional boot device!
@@ -590,12 +606,12 @@ These commands may also be placed in a file and read in by zonecfg:
 There are many options to configuring zones. Review the documentation
 for more info.
 
-Once the zone boots,```zlogin -C myzone``` puts you on the zone's system console (as if you
-were on a physical machine's serial console.) Use ```~.``` to exit the
-console (don't forget additional ```~```'s if you are logged in via ssh.)
+Once the zone boots,`zlogin -C myzone` puts you on the zone's system console (as if you
+were on a physical machine's serial console.) Use `~.` to exit the
+console (don't forget additional `~`'s if you are logged in via ssh.)
 There usually isn't anything you need to do on the console. New zones
 are like the initial OS install from the ISO-- you need to provide
-post-install configuration. ```zlogin myzone``` (without the -C) will get you a shell in the
+post-install configuration. `zlogin <zonenme>` (without the -C) will get you a shell in the
 zone without the need to log in.
 
 Creating Virtual Machines
@@ -638,10 +654,12 @@ as each file's content is hashed and its URI guaranteed not to change.
 ### FMRI Format
 
 Package names are FMRIs (Fault Management Resource Identifiers) in the
-```pkg://``` scheme and form a hierarchical namespace by type, determined
+`pkg://` scheme and form a hierarchical namespace by type, determined
 by the package author.  
 
-```pkg://omnios/developer/build/gnu-make@3.82,5.11-0.151006:20130506T182730Z```
+```
+pkg://omnios/developer/build/gnu-make@3.82,5.11-0.151006:20130506T182730Z
+```
 
 |                |                                      |
 |----------------|--------------------------------------|
@@ -661,10 +679,10 @@ The version string has four parts, separated by punctuation:
 | Timestamp  | 20130506T182730Z | an [ISO 8601](http://www.cl.cam.ac.uk/~mgk25/iso-time.html) timestamp indicating when the package was published |
 
 A package name may be specified by a shorter string, provided it is
-unambiguous, e.g. ```gnu-make``` or ```build/gnu-make``` instead of
-```developer/build/gnu-make```.
+unambiguous, e.g. `gnu-make` or `build/gnu-make` instead of
+`developer/build/gnu-make`.
 
-Additionally, you may ```root``` a package name by prefixing ```/```:
+Additionally, you may `root` a package name by prefixing `/`:
 
 ```
 $ pkg info runtime/perl
@@ -715,27 +733,29 @@ Review the **pkg(1)** man page for details.  Here are some common tasks.
 
 #### Configure Publishers
 
-| Command                                                                   | Description                |
-|---------------------------------------------------------------------------|----------------------------|
-| ```pkg publisher```                                                       | List configured publishers |
-| ```pkg set-publisher -g http://pkg.omniti.com/omniti-ms/ ms.omniti.com``` | Add a publisher            |
-| ```pkg unset-publisher ms.omniti.com```                                   | Remove a publisher         |
+| Command                                                               | Description                |
+|-----------------------------------------------------------------------|----------------------------|
+| `pkg publisher`                                                       | List configured publishers |
+| `pkg set-publisher -g http://pkg.omniti.com/omniti-ms/ ms.omniti.com` | Add a publisher            |
+| `pkg unset-publisher ms.omniti.com`                                   | Remove a publisher         |
 
 You can change the repo URL for a publisher without removing it and
 re-adding it:
 
-```pkg set-publisher -G http://old-url -g http://new-url <publisher-name>```
+```
+pkg set-publisher -G http://old-url -g http://new-url <publisher-name>
+```
 
 #### List
 
-| Command                                                              | Description                                                                                                                |
-|----------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| ```pkg list```                                                       | List all installed packages                                                                                                |
-| ```pkg info omniti/runtime/perl```                                   | Show detailed information on package omniti/runtime/perl, if a package is not installed, add option “-r” to query remotely |
-| ```pkg contents omniti/runtime/perl```                               | List the contents of a package                                                                                             |
-| ```pkg contents -t file -o path omniti/runtime/perl```               | List only regular files (i.e. no dir, link, etc.)                                                                          |
-| ```pkg contents -t file -o path -a path=\*.pm omniti/runtime/perl``` |  List all files with paths matching a pattern                                                                              |
-| ```pkg contents -t depend -o fmri subversion```                      |  List the dependencies of a given package                                                                                  |
+| Command                                                          | Description                                                                                                                |
+|------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| `pkg list`                                                       | List all installed packages                                                                                                |
+| `pkg info omniti/runtime/perl`                                   | Show detailed information on package omniti/runtime/perl, if a package is not installed, add option “-r” to query remotely |
+| `pkg contents omniti/runtime/perl`                               | List the contents of a package                                                                                             |
+| `pkg contents -t file -o path omniti/runtime/perl`               | List only regular files (i.e. no dir, link, etc.)                                                                          |
+| `pkg contents -t file -o path -a path=\*.pm omniti/runtime/perl` |  List all files with paths matching a pattern                                                                              |
+| `pkg contents -t depend -o fmri subversion`                      |  List the dependencies of a given package                                                                                  |
 
 See the section below on IPS dependencies for details
 
@@ -745,7 +765,9 @@ Search queries follow a structured syntax, with shortcuts. The query
 syntax is explained in the pkg(1) man page under the *search*
 subcommand. The fields are:
 
-```pkg_name:action_type:key:token```
+```
+pkg_name:action_type:key:token
+```
 
 “pkg\_name” is self-explanatory. “action\_type” refers to the type of
 object represented, such as file, dir, link, hardlink, etc. “key” is
@@ -754,38 +776,44 @@ owner, and “token” is the value of that key. Missing fields are
 implicitly wildcarded, and empty leading fields do not require colons.
 
 A bare query term (containing no colons) matches against the token field
-(all leading fields are implicitly wildcarded.) Therefore, ```pkg search
-foo``` is equivalent to```pkg search :::foo```.
+(all leading fields are implicitly wildcarded.) Therefore, `pkg search foo` 
+is equivalent to `pkg search :::foo`.
 
 Search terms are expected to be exact matches (there is no implicit
 substring matching.) Simple globbing with '?' and '*' are permitted,
-e.g. ```pkg search 'git*'```
+e.g. `pkg search 'git*'`
 
-* The name of the package that provides something (file, dir, link, etc.) called “git”: ```pkg search -p git``` <-- simple syntax
-* Packages delivering directory names matching “pgsql*”: ```pkg search -p 'dir::pgsql*'``` <-- structured syntax
-* If your search term is small and/or generic, limiting by action type such as “file” and index “basename” is useful to prune the result set: ```pkg search 'file:basename:ld'```
-* Locally-installed packages that depend on a given package: ```pkg search -l -o pkg.name 'depend::system/library/gcc-4-runtime'```
-  * Leave out the “-l” to search remotely and find all available packages that depend on the given one.
+* The name of the package that provides something (file, dir, link, etc.)
+  called “git”: `pkg search -p git` <-- simple syntax
+* Packages delivering directory names matching “pgsql*”:
+  `pkg search -p 'dir::pgsql*'` <-- structured syntax
+* If your search term is small and/or generic, limiting by action type such
+  as “file” and index “basename” is useful to prune the result set: 
+  `pkg search 'file:basename:ld'`
+* Locally-installed packages that depend on a given package: 
+  `pkg search -l -o pkg.name 'depend::system/library/gcc-4-runtime'`
+  * Leave out the `-l` to search remotely and find all available packages
+  that depend on the given one
 
 #### Install/Update/Remove
 
-| Command                                       | Description                                                           |
-|-----------------------------------------------|-----------------------------------------------------------------------|
-| ```pkg install omniti/runtime/perl```         | Install a package                                                     |
-| ```pkg install -nv omniti/runtime/perl```     | Test to see what would be done                                        |
-| ```pkg install omniti/runtime/perl@5.16.1```  | Install a specific version of a package                               |
-| ```pkg update omniti/runtime/perl@5.16.1```   | Update a package: same as above, substituting “update” for “install”  |
-| ```pkg update omniti/runtime/perl@5.14.2```   | You can “downgrade” too, just specify the older version you want      |
-| ```pkg update pkg://mypublisher/*```          | Apply only the updates from a single publisher                        |
-| ```pkg uninstall omniti/runtime/perl```       | Remove a package                                                      |
+| Command                                   | Description                                                           |
+|-------------------------------------------|-----------------------------------------------------------------------|
+| `pkg install omniti/runtime/perl`         | Install a package                                                     |
+| `pkg install -nv omniti/runtime/perl`     | Test to see what would be done                                        |
+| `pkg install omniti/runtime/perl@5.16.1`  | Install a specific version of a package                               |
+| `pkg update omniti/runtime/perl@5.16.1`   | Update a package: same as above, substituting “update” for “install”  |
+| `pkg update omniti/runtime/perl@5.14.2`   | You can “downgrade” too, just specify the older version you want      |
+| `pkg update pkg://mypublisher/*`          | Apply only the updates from a single publisher                        |
+| `pkg uninstall omniti/runtime/perl`       | Remove a package                                                      |
 
 #### Audit
 
-| Command                              | Description                                                                                     |
-|--------------------------------------|-------------------------------------------------------------------------------------------------|
-| ```pkg history```                    | View package change history, use “-l” to get verbose info, including package names and versions |
-| ```pkg verify omniti/library/uuid``` | Verify proper package state                                                                     |
-| ```pkg fix omniti/library/uuid```    | If a problem is found                                                                           |
+| Command                          | Description                                                                                     |
+|----------------------------------|-------------------------------------------------------------------------------------------------|
+| `pkg history`                    | View package change history, use “-l” to get verbose info, including package names and versions |
+| `pkg verify omniti/library/uuid` | Verify proper package state                                                                     |
+| `pkg fix omniti/library/uuid`    | If a problem is found                                                                           |
 
 For example, let's “corrupt” a file and fix it:
 
@@ -851,7 +879,7 @@ available from the repository.
 
 For example, the [perl.omniti.com](http://pkg.omniti.com/omniti-perl/)
 publisher provides Perl module distribution packages for both 5.14.x and
-5.16.x. In addition to a *require* on ```omniti/runtime/perl```, packages for 5.14.x *require*
+5.16.x. In addition to a *require* on `omniti/runtime/perl`, packages for 5.14.x *require*
 the “omniti/incorporation/perl-514-incorporation” package, which does:
 
 ```
@@ -945,15 +973,15 @@ given weekly release, you will need to follow these steps.
 The following instructions will always apply an update successfully and
 safely:
 
-| Step | Command                                     | Description                                                                                                                                                                        |
-|------|---------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1    | ```zlogin <zonename> shutdown -i5 -g0 -y``` | Shut down each zone                                                                                                                                                                |
-| 2    | ```zoneadm -z <zonename> detach```          | Detach each zone                                                                                                                                                                   |
-| 3    | ```pkg update```                            | Upgrade the global zone                                                                                                                                                            |
-| 4    | ```init 6```                                | Reboot the server                                                                                                                                                                  |
-| 5    | ```zoneadm -z <zonename> attach -u```       | Attach each zone with minimal update. This ensures that the packages necessary for proper operation match the global zone, but it does **not** update all packages within the zone |
-| 6    | ```pkg -R <zonepath>/root update```         | **Optional:** Perform a full package update of the zone's pkg image. You can also do this as a normal 'pkg update' from within the zone                                            |
-| 7    | ```zoneadm -z <zonename> boot```            | Boot each zone                                                                                                                                                                     |
+| Step | Command                                 | Description                                                                                                                                                                        |
+|------|-----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | `zlogin <zonename> shutdown -i5 -g0 -y` | Shut down each zone                                                                                                                                                                |
+| 2    | `zoneadm -z <zonename> detach`          | Detach each zone                                                                                                                                                                   |
+| 3    | `pkg update`                            | Upgrade the global zone                                                                                                                                                            |
+| 4    | `init 6`                                | Reboot the server                                                                                                                                                                  |
+| 5    | `zoneadm -z <zonename> attach -u`       | Attach each zone with minimal update. This ensures that the packages necessary for proper operation match the global zone, but it does **not** update all packages within the zone |
+| 6    | `pkg -R <zonepath>/root update`         | **Optional:** Perform a full package update of the zone's pkg image. You can also do this as a normal 'pkg update' from within the zone                                            |
+| 7    | `zoneadm -z <zonename> boot`            | Boot each zone                                                                                                                                                                     |
 
 Starting with [r151014](ReleaseNotes/r151014.md) you have the option
 of using [Linked Image (lipkg) zones](linked_images.md). With linked
@@ -1116,8 +1144,8 @@ We normally target “i386” and “amd64”.
 
 As mentioned above, the binaries for each ISA target are kept in
 separate subdirectories below where the program would normally live,
-such as ```/usr/bin```. For example, targets may be installed in ```/usr/bin/i386/``` and ```/usr/bin/amd64/```. For a given
-program, you'll also see an executable at the normal location, such as ```/usr/bin/curl```.
+such as `/usr/bin`. For example, targets may be installed in `/usr/bin/i386/` and `/usr/bin/amd64/`. For a given
+program, you'll also see an executable at the normal location, such as `/usr/bin/curl`.
 This is a *isaexec stub* that acts as a wrapper and utilizes isaexec(3C)
 to determine which binary to run. This makes it possible for everyone to
 just run the program from the “normal” location and get the “best”
@@ -1146,9 +1174,9 @@ $ ldd curl
 
 So this binary is really small (9060 bytes) and isn't linked against
 libcurl, libssl, and so forth as one would expect. It's just the stub
-that figures out where the \_\_real\_\_ binary is. For packages that
+that figures out where the __real__ binary is. For packages that
 OmniOS adds to the illumos core, this binary is created during the build
-process. For illumos binaries, the stub is actually a hard link to ```/usr/lib/isaexec```.
+process. For illumos binaries, the stub is actually a hard link to `/usr/lib/isaexec`.
 
 ```
 $ ls -l i386/curl
@@ -1182,10 +1210,10 @@ Notice that the 64-bit libraries are similarly segregated in a
 subdirectory. Libraries are a little different, since they are not
 executed directly but are instead linked in at runtime, and therefore do
 not need stub wrappers. 32-bit libs are kept in the base location, such
-as ```/usr/lib```, while 64-bit libs are in a subdirectory. The expectation is that ```/usr/lib```
-contains *only* 32-bit objects, and that any 64-bit versions will be in ```/usr/lib/amd64```
-. This influences our builds, since we need to be careful to preserve
-this segregation. If a 64-bit library ends up in ```/usr/lib```, a 32-bit app trying
+as `/usr/lib`, while 64-bit libs are in a subdirectory. The expectation is that `/usr/lib`
+contains *only* 32-bit objects, and that any 64-bit versions will be in `/usr/lib/amd64`.
+This influences our builds, since we need to be careful to preserve
+this segregation. If a 64-bit library ends up in `/usr/lib`, a 32-bit app trying
 to link it will crash.
 
 Which of the binaries is preferred? Both i386 and amd64 binaries will
@@ -1203,7 +1231,7 @@ isaexec stubs that we create will prefer the the list specified in this
 variable over what the system supports.
 
 As an example, we'll leave ISALIST unset, truss a shell process, and see
-what happens when we run curl. Then we'll ```export ISALIST=i386``` and do it again. The
+what happens when we run curl. Then we'll `export ISALIST=i386` and do it again. The
 following truss output is edited for brevity, just to demonstrate the
 relevant actions.
 
@@ -1244,5 +1272,5 @@ ISALIST instead.
 
 Exporting the shell variable ensures that the desired ISA list is used
 even by programs called by sub-shells, such as another application
-running ```/usr/bin/curl-config``` to discover information like library flags, which differs from
+running `/usr/bin/curl-config` to discover information like library flags, which differs from
 32- to 64-bit.

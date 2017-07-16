@@ -15,7 +15,7 @@ LTS
 Currently r151014
 
 ```
-pkg install developer/gcc48
+# pkg install developer/gcc48
 ```
 
 Stable
@@ -24,7 +24,7 @@ Stable
 Currently r151020
 
 ```
-pkg install developer/gcc51
+# pkg install developer/gcc51
 ```
 
 Old LTS
@@ -33,14 +33,14 @@ Old LTS
 Currently r151006
 
 ```
-pkg install developer/gcc47 system/library/math/header-math
+# pkg install developer/gcc47 system/library/math/header-math
 ```
 
 All releases
 ------------
 
 ```
-pkg install \
+# pkg install \
   developer/build/autoconf \
   developer/build/automake \
   developer/lexer/flex \

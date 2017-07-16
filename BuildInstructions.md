@@ -12,20 +12,19 @@ Starting with [r151016](ReleaseNotes/r151016.md) or later,
 [building illumos](illumos-tools.md) is much easier. Visit the
 [Building illumos](illumos-tools.md) page for details.
 
-How-to
-------
+## How-to
 
 ```
-git clone https://github.com/omniosorg/omnios-build.git
+# git clone https://github.com/omniosorg/omnios-build.git
 ```
 
 To build a single package, including illumos as well as the third-party
 packages:
 
 ```
-cd omnios-build/build
-./buildctl list
-./buildctl build <pkgname>
+# cd omnios-build/build
+# ./buildctl list
+# ./buildctl build <pkgname>
 ```
 
 To a first approximation, the [buildctl](buildctl.md) script goes into one of
@@ -37,8 +36,8 @@ into the repo specified in ```lib/site.sh.```.
 If you're only interested in re-rolling the illumos packages:
 
 ```
-cd illumos/
-./build.sh
+# cd illumos/
+# ./build.sh
 ```
 
 Note that the illumos build script uses a different TMPDIR than most of
@@ -55,8 +54,7 @@ more friendly to illumos developers who often build illumos-omnios
 before building the rest of the system, ```buildctl``` has been
 enhanced. See the [dedicated buildctl page](buildctl.md) for more.
 
-How to roll your own software
------------------------------
+## How to roll your own software
 
 One of the advantages of IPS is that it is build system agnostic.
 However you wish to build your software, you can get it packaged into
@@ -107,8 +105,8 @@ Kayak builds have two components: kayak, and kayak-kernel. kayak-kernel
 requires privilege (either run as root, with sudo(1), or with
 appropriate finer-grained privileges). To this end, the
 [buildctl](buildctl.md) script has certain variables that can help assist with
-worry-free Kayak builds. Otherwise, chdir()-ing directly into the ```kayak-kernel/```
-directory and uttering ```sudo ./build.sh``` may work as well.
+worry-free Kayak builds. Otherwise, chdir()-ing directly into the `kayak-kernel/`
+directory and uttering `sudo ./build.sh` may work as well.
 
 Also mentioned on the [buildctl](buildctl.md) page: kayak-kernel pulls its
 bits from PKGURL if specified, or PKGSRVR if PKGURL is not specified.
@@ -121,13 +119,11 @@ OmniOS builders make changes to illumos-omnios, the PREBUILT\_ILLUMOS
 variable can be exploited to install an already-built-and-packaged
 illumos-omnios. See the [buildctl](buildctl.md) page for more details.
 
-Creating Installation Media
----------------------------
+## Creating Installation Media
 
-See ReleaseMedia
+See [ReleaseMedia](ReleaseMedia.md)
 
-Keeping Up With The Flow
-------------------------
+## Keeping Up With The Flow
 
 See the [Maintainers](Maintainers.md) page for how we stay in sync with
 illumos-gate.

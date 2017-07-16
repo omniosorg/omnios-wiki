@@ -32,10 +32,16 @@ Methodology
 
 * Start with an Illumos build
 * Bootstrap packages that replace their equivalents in OI
-* Strip out anything not essential to booting and running a minimal system, see [Keep Your S**t To Yourself](KYSTY.md)
-  * The [OmniOS package repository](http://omnios.omniti.com/omnios/release) provides more packages than the bare essentials (toolchains to support self-hosting, for instance) but these packages are not defined for a typical install
-* Build with GCC instead of Sun/Solaris Studio wherever possible, but continue to use ```/usr/ccs/bin/ld``` and **not** GNU ld
-* Locate non-core user-land packages in a different publisher/repo. See a [list of third-party repos](Packaging.md).
+* Strip out anything not essential to booting and running a minimal system,
+  see [Keep Your S**t To Yourself](KYSTY.md)
+  * The [OmniOS package repository](http://omnios.omniti.com/omnios/release)
+    provides more packages than the bare essentials (toolchains to support
+    self-hosting, for instance) but these packages are not defined for a
+    typical install
+* Build with GCC instead of Sun/Solaris Studio wherever possible, but
+  continue to use `/usr/ccs/bin/ld` and **not** GNU ld
+* Locate non-core user-land packages in a different publisher/repo.
+  See a [list of third-party repos](Packaging.md).
 
 Ultimately others in the community should be able to take our build
 scripts and documentation and roll their own copy of the system.
@@ -77,8 +83,8 @@ depend fmri=system/management/intel-amt@0.5.11,5.11-0.151004 type=incorporate
 ```
 
 The above constrains the intel-amt package to version
-```0.5.11,5.11-0.151004:*```. This excludes, for example, versions
-```0.5.11,5.11-0.151002:*``` and ```0.5.11,5.11-0.151005:*```, but permits
+`0.5.11,5.11-0.151004:*`. This excludes, for example, versions
+`0.5.11,5.11-0.151002:*` and `0.5.11,5.11-0.151005:*`, but permits
 updated versions that match up to the branch (0.151004) but bear more
 recent timestamps.
 

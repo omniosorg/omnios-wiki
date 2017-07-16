@@ -75,7 +75,7 @@ For example:
   },
 ```
 
-Pay attention to both the image UUID, and the ```kernel_version attribute```. The compressed
+Pay attention to both the image UUID, and the `kernel_version attribute`. The compressed
 ZFS send stream for this Joyent image can be obtained knowing the image
 UUID, like so [file](https://images.joyent.com/images/0be607d2-8b61-11e6-bf98-03750d422a79/file).
 
@@ -178,7 +178,7 @@ LX Zones, BEs, and Upgrades
 LX Zones, unlike ipkg or lipkg zones, do not have individual boot
 environments. If you update and create a new BE, any LX zones are not
 explicitly updated. LX zones use lofs mounts to remap the global zone's
-```/usr/bin``` into ```/native/usr/bin``` inside the LX zone. The zone's
+`/usr/bin` into `/native/usr/bin` inside the LX zone. The zone's
 contents stay constant no matter which BE you're using.
 
 Keeping up
@@ -207,4 +207,4 @@ include:
 * Using more /native tools to configure networking in an LX zone
 * Using zonecfg(1M) for networking configuration insides OmniOS Zones (ipkg, lipkg, lofs-native per above)
 * BE-aware LX zones
-* A native OmniOS zone that uses lofs for its ```/usr``` filesystem, like LX does for ```/native```
+* A native OmniOS zone that uses lofs for its `/usr` filesystem, like LX does for `/native`

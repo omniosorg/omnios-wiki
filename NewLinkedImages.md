@@ -6,16 +6,16 @@ modern upstream from Oracle Solaris and OpenIndiana.
 
 This changed some semantics of [Linked-image zones](linked_images.md).
 Linked-image zones are no longer as strictly linked to the
-parent (global-zone) image as they were. The ```-r``` flag in pkg(1) can be used
-to maintain strict child-image (non-global ```lipkg``` zone) updates. Some packages
-(like ```system/library```) have explicit parent-image dependencies, which means they will
+parent (global-zone) image as they were. The `-r` flag in pkg(1) can be used
+to maintain strict child-image (non-global `lipkg` zone) updates. Some packages
+(like `system/library`) have explicit parent-image dependencies, which means they will
 still always be updated alongside the global zone. Most other packages
 now do not have to synchronize their child-images, or required to be in
 synch with their parent images.
 
 Here is an example between a global zone and a single linked-image
-non-global zone, showing that non-parent-dependent ```shell/bash``` can be updated. Note
-that from the global zone, the non-global zone is updated only with ```-r```.
+non-global zone, showing that non-parent-dependent `shell/bash` can be updated. Note
+that from the global zone, the non-global zone is updated only with `-r`.
 And also note that inside the non-global zone, it can update without the
 parent having to do so as well.
 
