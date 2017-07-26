@@ -10,7 +10,7 @@ Wholesale Repo Copy
 -------------------
 
 ```
-# pkgrecv -s http://pkg.omniti.com/omnios/release -d file:///repo/myomnios/ 'pkg:/*'
+# pkgrecv -s https://pkg.omniosce.org/r151022/core/ -d file:///repo/myomnios/ 'pkg:/*'
 ```
 
 What we have done above is tell `pkgrecv` to suck down all the packages
@@ -24,7 +24,7 @@ You could just put in a pattern to match if you wanted specific
 packages.
 
 ```
-pkgrecv -s http://pkg.omniti.com/omnios/release -d file:///repo/myomnios/ pkg:/terminal/screen pkg:/shell/zsh
+pkgrecv -s https://pkg.omniosce.org/r151022/core/ -d file:///repo/myomnios/ pkg:/terminal/screen pkg:/shell/zsh
 ```
 
 Specify as many pkg: FMRIs as needed (you can use shell-style globbing
