@@ -63,9 +63,9 @@ Post-install
 ------------
 
 After installation, the main menu returns. The shell is still available,
-and the new is mounted on for further editing. contains commands that
+and the new `rpool` is mounted on `/mnt` for further editing. `/mnt/.initialboot` contains commands that
 will run exactly once at first-boot time. Network configuration could be
-done here, for example. Other configuration on could be done at this
+done here, for example. Other configuration on `/mnt/etc` could be done at this
 time as well via the shell. Once the machine reboots, the
 newly-installed rpool will display [Loader](BSDLoader.md) and then
 boot into the newly-installed BE.
